@@ -55,7 +55,11 @@ function Intro({ onOpen }: { onOpen: () => void }) {
   const [playing, setPlaying] = useState(false);
   const start = () => {
     setPlaying(true);
-    ref.current?.play().catch(onOpen);
+    const v = ref.current;
+    if (!v) return onOpen();
+    v.play().catch(onOpen);
+    // If the clip can't decode or autoplay is blocked, never trap the guest here.
+    setTimeout(() => { if (v.readyState < 2 || v.currentTime === 0) onOpen(); }, 1500);
   };
   return (
     <div className="fixed inset-0 bg-ivory">
