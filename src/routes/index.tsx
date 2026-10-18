@@ -241,7 +241,7 @@ function Landing() {
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
       <MusicButton />
       {/* Hero — arch lace background, lifted like a paper card */}
-      <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center hero-card" style={{ backgroundImage: `url(${archBg.url})` }}>
+      <section className="relative mx-auto aspect-[2/3] max-h-[100svh] w-full max-w-[640px] overflow-hidden bg-cover bg-center hero-card" style={{ backgroundImage: `url(${archBg.url})` }}>
         <div className="hero-in absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
           <p className="font-display text-base not-italic tracking-wide sm:text-lg">გეპატიჟებით</p>
           <h1 className="mt-[5%] font-display text-[2.6rem] leading-tight not-italic sm:text-7xl">
