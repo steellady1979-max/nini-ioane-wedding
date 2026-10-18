@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import video from "@/assets/envelope.mp4.asset.json";
-import kids from "@/assets/kids-sticker.png.asset.json";
+import kids from "@/assets/kids-sticker-2.png.asset.json";
+import archBg from "@/assets/arch-bg.png.asset.json";
+import floralBg from "@/assets/floral-bg.png.asset.json";
 import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
 
@@ -75,31 +77,26 @@ function useCountdown() {
 function Landing() {
   const cd = useCountdown();
   return (
-    <main className="min-h-screen animate-in fade-in duration-1000 bg-blush/30 pb-16 text-foreground">
-      {/* Printed-card style invitation */}
-      <section className="px-4 pt-10">
-        <div className="lace-card relative mx-auto max-w-[460px]">
-          <div className="paper relative overflow-hidden px-8 pt-14 text-center text-cocoa">
-            <p className="font-display text-lg not-italic tracking-wide">გეპატიჟებით</p>
-            <h1 className="mt-6 font-display text-6xl leading-tight not-italic sm:text-7xl">
-              ნინი<span className="mx-2 text-4xl align-middle">&</span>იოანე
-            </h1>
-            <p className="mx-auto mt-6 max-w-[30ch] text-sm leading-relaxed text-foreground/80">
-              სიხარულით გაცნობებთ, რომ ვქორწინდებით და გვსურს ეს დღე თქვენთან ერთად გავატაროთ
-            </p>
-            <p className="mt-8 font-display text-3xl not-italic tracking-widest">8 | ნოემბერი | 2026</p>
-            <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
-            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-foreground/70">არმაზის ხეობა</p>
-            <div className="relative -mx-8 mt-8 h-[300px]">
-              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker absolute -bottom-6 left-2 w-[78%] -rotate-3" />
-            </div>
+    <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
+      {/* Hero — arch lace background */}
+      <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${archBg.url})` }}>
+        <div className="absolute inset-x-[14%] top-[13%] bottom-[5%] flex flex-col items-center text-center text-cocoa">
+          <p className="font-display text-lg not-italic tracking-wide">გეპატიჟებით</p>
+          <h1 className="mt-[6%] font-display text-5xl leading-tight not-italic sm:text-7xl">
+            ნინი<span className="mx-2 align-middle text-3xl sm:text-4xl">&</span>იოანე
+          </h1>
+          <p className="mt-[5%] font-display text-2xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
+          <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
+          <div className="mt-auto flex w-full justify-center">
+            <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[92%]" />
           </div>
         </div>
       </section>
 
+      <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       {/* Countdown in ornament frame */}
       <section className="px-4 pt-16 text-center">
-        <h2 className="font-display text-3xl not-italic text-cocoa">დარჩა</h2>
+        <h2 className="font-display text-3xl not-italic text-ecru">ჩვენს დღემდე დარჩა</h2>
         <div className="relative mx-auto mt-6 aspect-[2134/728] max-w-[520px]">
           <img src={ornament.url} alt="" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
@@ -146,7 +143,7 @@ function Rsvp() {
   return (
     <section className="mx-auto max-w-[460px] px-4 pt-16">
       <div className="paper rounded-3xl px-6 py-10 text-center">
-        <h2 className="font-display text-3xl not-italic text-cocoa">დაგვიდასტურეთ</h2>
+        <h2 className="font-display text-3xl not-italic text-ecru">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
           <p className="mt-8 font-display text-xl not-italic text-cocoa">გმადლობთ! ♡</p>
