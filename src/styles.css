@@ -143,7 +143,7 @@
   }
 }
 
-@font-face { font-family: "Galaktioni"; src: url("/__l5e/assets-v1/413a59ac-1273-40b9-8851-937057fab01a/galaktioni.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Galaktioni"; src: url("/media/galaktioni.ttf") format("truetype"); font-display: swap; }
 @theme inline {
   --font-display: "Galaktioni", serif;
   --font-body: "FiraGO", sans-serif;
