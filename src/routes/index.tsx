@@ -211,11 +211,11 @@ function useReveal() {
     const io = new IntersectionObserver((entries) => {
       entries.filter((e) => e.isIntersecting).forEach((e, i) => {
         const el = e.target as HTMLElement;
-        el.style.transitionDelay = `${Math.min(i, 3) * 120}ms`;
+        el.style.transitionDelay = `${Math.min(i, 5) * 250}ms`;
         el.classList.add("in");
         io.unobserve(el);
       });
-    }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+    }, { threshold: 0.2, rootMargin: "0px 0px -12% 0px" });
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
@@ -242,7 +242,7 @@ function Landing() {
       <MusicButton />
       {/* Hero — arch lace background, lifted like a paper card */}
       <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center hero-card" style={{ backgroundImage: `url(${archBg.url})` }}>
-        <div className="absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
+        <div className="hero-in absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
           <p className="font-display text-base not-italic tracking-wide sm:text-lg">გეპატიჟებით</p>
           <h1 className="mt-[5%] font-display text-[2.6rem] leading-tight not-italic sm:text-7xl">
             ნინი<span className="mx-2 align-middle text-2xl sm:text-4xl">&</span>იოანე
@@ -251,7 +251,10 @@ function Landing() {
           <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
           <div className="mt-auto flex w-full justify-center">
             <div className="relative w-[84%] sm:w-[90%]">
-              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-full" />
+              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker twinkle w-full" />
+              {[["12%","30%",0],["82%","22%",1.1],["50%","8%",2],["25%","70%",0.6],["75%","62%",1.6]].map(([l,t,dl]) => (
+                <span key={`${l}${t}`} className="sparkle" style={{ left: l as string, top: t as string, animationDelay: `${4 + (dl as number)}s` }} />
+              ))}
               <RedThread />
             </div>
           </div>
