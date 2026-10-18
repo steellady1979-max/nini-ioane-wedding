@@ -186,3 +186,7 @@ body { font-family: var(--font-body); font-style: italic; }
   color: var(--ecru); font-size: 11px; letter-spacing: .22em; }
 .lace-dot { width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle, var(--ecru) 0 3px, var(--ivory) 3.5px 5px, transparent 5.5px), repeating-conic-gradient(var(--ecru) 0 12deg, transparent 12deg 30deg); -webkit-mask: radial-gradient(circle, #000 8px, transparent 9px); mask: radial-gradient(circle, #000 8px, transparent 9px); }
 .bg-rsvp { background-color: #E8E3DA; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
