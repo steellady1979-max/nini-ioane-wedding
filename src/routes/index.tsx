@@ -111,20 +111,25 @@ function Landing() {
       </section>
 
       {/* Schedule */}
-      <section className="mx-auto max-w-[460px] px-4 pt-16">
-        <h2 className="text-center font-display text-3xl not-italic text-cocoa">დღის განრიგი</h2>
-        <div className="mt-8 space-y-4">
-          {schedule.map((s) => (
-            <div key={s.time} className="paper flex items-center gap-5 rounded-2xl px-5 py-5">
-              <div className="w-16 shrink-0 border-r border-cocoa/20 font-display text-2xl not-italic text-cocoa">{s.time}</div>
-              <div className="flex-1 text-left">
-                <p className="font-display text-xl not-italic text-cocoa">{s.title}</p>
-                <p className="text-sm text-muted-foreground">{s.place}</p>
+      <section className="mx-auto max-w-3xl px-4 pt-16">
+        <h2 className="text-center font-display text-3xl not-italic text-ecru">დღის განრიგი</h2>
+        <ol className="relative mt-12 space-y-16">
+          <span aria-hidden className="absolute bottom-0 left-5 top-0 w-px bg-ecru/60 md:left-1/2" />
+          {schedule.map((s, i) => (
+            <li key={s.time} className="relative pl-14 md:grid md:grid-cols-2 md:gap-16 md:pl-0">
+              <span aria-hidden className="lace-dot absolute left-5 top-6 -translate-x-1/2 md:left-1/2" />
+              <div className={`flex items-center gap-5 ${i % 2 ? "md:col-start-2" : "md:col-start-1 md:flex-row-reverse md:text-right"}`}>
+                <div className="arch-slot w-28 shrink-0 sm:w-32" aria-label="ფოტო მალე" />
+                <div>
+                  <p className="font-display text-4xl not-italic text-ecru">{s.time}</p>
+                  <p className="mt-1 font-display text-xl not-italic text-cocoa">{s.title}</p>
+                  <p className="text-sm text-muted-foreground">{s.place}</p>
+                  <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-cocoa">რუკაზე ნახვა →</a>
+                </div>
               </div>
-              <a href={s.map} target="_blank" rel="noreferrer" aria-label="რუკაზე ნახვა" className="rounded-full border border-cocoa/30 px-3 py-1.5 text-xs text-cocoa not-italic">რუკა</a>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       <Rsvp />
