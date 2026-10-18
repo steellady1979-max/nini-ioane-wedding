@@ -150,11 +150,13 @@
   --color-ivory: var(--ivory);
   --color-blush: var(--blush);
   --color-cocoa: var(--cocoa);
+  --color-ecru: var(--ecru);
 }
 :root {
   --ivory: oklch(0.965 0.018 85);
   --blush: oklch(0.9 0.04 15);
   --cocoa: oklch(0.42 0.06 50);
+  --ecru: oklch(0.62 0.07 72);
   --background: oklch(0.975 0.012 60);
   --foreground: oklch(0.38 0.05 45);
   --primary: oklch(0.42 0.06 50);
@@ -172,3 +174,7 @@ body { font-family: var(--font-body); font-style: italic; }
   -webkit-mask: radial-gradient(circle 8px at 50% 0, transparent 7px, #000 8px) 0 0 / 18px 100% repeat-x;
   border-radius: 6px; transform: rotate(-1deg); box-shadow: 0 30px 60px -30px oklch(0.4 0.05 30 / 0.5); }
 .lace-card > .paper { transform: rotate(1deg); }
+.arch-slot { aspect-ratio: 3/4; border-radius: 999px 999px 6px 6px; background-color: var(--ivory);
+  background-image: radial-gradient(circle, oklch(0.62 0.07 72 / .22) 1.5px, transparent 2px), radial-gradient(circle at 50% 50%, transparent 5px, oklch(0.62 0.07 72 / .15) 6px, transparent 7px);
+  background-size: 12px 12px, 24px 24px; box-shadow: inset 0 0 0 4px var(--ivory), inset 0 0 0 5px oklch(0.62 0.07 72 / .55), 0 10px 20px -12px oklch(0.4 0.05 30 / .4); }
+.lace-dot { width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle, var(--ecru) 0 3px, var(--ivory) 3.5px 5px, transparent 5.5px), repeating-conic-gradient(var(--ecru) 0 12deg, transparent 12deg 30deg); -webkit-mask: radial-gradient(circle, #000 8px, transparent 9px); mask: radial-gradient(circle, #000 8px, transparent 9px); }
