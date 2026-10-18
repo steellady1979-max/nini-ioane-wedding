@@ -2,10 +2,10 @@
   "version": 1,
   "asset_id": "79b6227f-8a08-45b1-aa92-0d1ca7593e70",
   "project_id": "222f1b1f-78bb-40ce-a724-0356d8a18662",
-  "url": "/media/vinyl-record.png",
+  "url": "/media/vinyl-record.webp",
   "r2_key": "a/v1/222f1b1f-78bb-40ce-a724-0356d8a18662/79b6227f-8a08-45b1-aa92-0d1ca7593e70/vinyl-record.png",
   "original_filename": "vinyl-record.png",
   "size": 86001,
-  "content_type": "image/png",
+  "content_type": "image/webp",
   "created_at": "2026-10-18T19:40:29Z"
 }
