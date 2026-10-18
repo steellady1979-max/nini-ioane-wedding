@@ -197,16 +197,17 @@ html { -webkit-tap-highlight-color: transparent; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { transform: none; } }
 
-/* Hero: lines appear one after another */
-.hero-in > * { opacity: 0; animation: hero-in 1.4s cubic-bezier(.2,.7,.2,1) forwards; }
-.hero-in > *:nth-child(1) { animation-delay: .3s; }
-.hero-in > *:nth-child(2) { animation-delay: .9s; }
-.hero-in > *:nth-child(3) { animation-delay: 1.5s; }
-.hero-in > *:nth-child(4) { animation-delay: 2s; }
-.hero-in > *:nth-child(5) { animation-delay: 2.6s; }
-@keyframes hero-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+/* Hero: all header lines appear together as one whole, then photo & heart follow */
+.hero-in > * { opacity: 0; animation: hero-in 1.2s cubic-bezier(.2,.7,.2,1) .25s forwards, text-twinkle 3.6s ease-in-out 2.4s infinite; }
+.hero-in > *:nth-child(5) { animation: hero-in 1.5s cubic-bezier(.2,.7,.2,1) 1.7s forwards; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+/* Soft golden shimmer on the header texts, like the kids photo glow */
+@keyframes text-twinkle {
+  0%, 100% { text-shadow: 0 0 10px oklch(0.85 0.1 85 / 0); }
+  50% { text-shadow: 0 0 14px oklch(0.85 0.1 85 / .55), 0 0 30px oklch(0.85 0.1 85 / .28); }
+}
 /* If animations can't run (reduced motion), never leave the hero contents invisible */
-@media (prefers-reduced-motion: reduce) { .hero-in > * { opacity: 1; animation: none; } }
+@media (prefers-reduced-motion: reduce) { .hero-in > * { opacity: 1; animation: none; text-shadow: none; } }
 
 /* Kids sticker: soft twinkle glow */
 .twinkle { animation: twinkle 3.2s ease-in-out 4s infinite; }
@@ -218,10 +219,10 @@ html { -webkit-tap-highlight-color: transparent; }
 @keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(.3); } 50% { opacity: 1; transform: scale(1.2); } }
 
 /* Red thread of fate — drawn once over the kids sticker, then gently breathes */
-.thread-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: thread-draw 2.6s ease-in-out 0.6s forwards; }
+.thread-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: thread-draw 2.6s ease-in-out 2.5s forwards; }
 @keyframes thread-draw { to { stroke-dashoffset: 0; } }
-.thread-draw-2 { animation-delay: 0.9s; }
-.thread-heart { transform-origin: center; transform-box: fill-box; animation: thread-heart-beat 4.5s ease-in-out 3.6s infinite; }
+.thread-draw-2 { animation-delay: 2.8s; }
+.thread-heart { transform-origin: center; transform-box: fill-box; animation: thread-heart-beat 4.5s ease-in-out 5.6s infinite; }
 @keyframes thread-heart-beat { 0%, 100% { transform: scale(1); } 6% { transform: scale(1.12); } 12% { transform: scale(1); } }
 .thread-spark { opacity: 0; animation: thread-spark 5s ease-in-out infinite; }
 @keyframes thread-spark { 0%, 100% { opacity: 0; } 50% { opacity: 0.9; } }
