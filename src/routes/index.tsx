@@ -8,6 +8,14 @@ import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
 import garden from "@/assets/ceremony-garden.jpg.asset.json";
 import rsvpFrame from "@/assets/rsvp-frame.png.asset.json";
+import wax from "@/assets/wax-seal.png.asset.json";
+import mapBtn from "@/assets/map-btn.png.asset.json";
+
+function MapLink({ href }: { href: string }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="relative mt-3 inline-flex h-9 w-36 items-center justify-center bg-contain bg-center bg-no-repeat text-xs text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>რუკაზე ნახვა</a>
+  );
+}
 
 const CAL_TITLE = "ნინი & იოანე — ქორწილი";
 const CAL_PLACE = "არმაზის ხეობა";
@@ -174,7 +182,7 @@ function Landing() {
                 <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
                 <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
                 <p className="text-sm text-muted-foreground">{s.place}</p>
-                <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
+                <div><MapLink href={s.map} /></div>
               </div>
             </li>
           ))}
@@ -184,14 +192,18 @@ function Landing() {
       <Locations />
       </div>
 
-      <div className="bg-ivory py-8">
+      <div className="bg-rsvp overflow-hidden py-8">
         <Rsvp />
       </div>
 
       <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       <Wishes />
 
-      <footer className="pt-16 text-center font-display text-2xl not-italic text-graphite">ნ & ი</footer>
+      <footer className="flex flex-col items-center pt-16 text-center">
+        <img src={wax.url} alt="" className="w-20 drop-shadow-md" />
+        <p className="mt-3 font-display text-2xl not-italic text-graphite">ნ & ი</p>
+        <p className="mt-1 text-xs tracking-[0.3em] text-muted-foreground">08 · 11 · 2026</p>
+      </footer>
       </div>
     </main>
   );
@@ -212,7 +224,7 @@ function Locations() {
             <figcaption className="mt-4">
               <p className="font-display text-xl not-italic text-graphite">{l.name}</p>
               <p className="mt-1 text-sm text-muted-foreground">{l.note}</p>
-              <a href={l.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
+              <div><MapLink href={l.map} /></div>
             </figcaption>
           </figure>
         ))}
@@ -227,9 +239,9 @@ function Rsvp() {
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
-    <section className="mx-auto w-full max-w-[680px] pt-8">
-      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[20%] pb-[26%] pt-[28%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(860px, 165vw)" }}>
-        <h2 className="font-display text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
+    <section className="mx-auto w-[112%] max-w-[760px] -translate-x-[5.4%] pt-4 sm:w-full sm:translate-x-0">
+      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[23%] pb-[30%] text-center mix-blend-multiply" style={{ paddingTop: "48%", backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(980px, 200vw)" }}>
+        <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
           <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
