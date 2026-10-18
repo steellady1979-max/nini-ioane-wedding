@@ -127,6 +127,7 @@ function Intro({ onOpen }: { onOpen: () => void }) {
   const tap = () => {
     if (playing) return onOpen(); // any touch during the clip skips it
     setPlaying(true);
+    startMusic();
     const v = ref.current;
     if (!v) return onOpen();
     v.playbackRate = 1.8;
