@@ -163,6 +163,7 @@ function Landing() {
   const cd = useCountdown();
   return (
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
+      <MusicButton />
       {/* Hero — arch lace background, lifted like a paper card */}
       <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center hero-card" style={{ backgroundImage: `url(${archBg.url})` }}>
         <div className="absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
@@ -273,16 +274,16 @@ function Rsvp() {
         ) : (
           <form className="mt-8 space-y-3" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
             <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
-            <div className="grid grid-cols-2 gap-3">
+            <div className="flex flex-col items-center gap-2 pt-1">
               {(["yes", "no"] as const).map((k) => (
                 <button type="button" key={k} onClick={() => setAns(k)}
-                  className={`rounded-xl border px-3 py-3 text-sm not-italic ${ans === k ? "border-graphite bg-graphite text-primary-foreground" : "border-border text-graphite"}`}>
-                  {k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
+                  className={`${plaque} w-48 ${ans === k ? "scale-105 font-semibold drop-shadow-md" : ans ? "opacity-50" : ""}`} style={plaqueStyle}>
+                  {ans === k ? "✓ " : ""}{k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
                 </button>
               ))}
             </div>
             {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={field} />}
-            <button disabled={!ans} className="w-full rounded-full bg-graphite py-3 font-display text-lg not-italic text-primary-foreground disabled:opacity-40">გაგზავნა</button>
+            <div className="pt-2"><button disabled={!ans} className={`${plaque} font-display text-base not-italic`} style={plaqueStyle}>გაგზავნა</button></div>
           </form>
         )}
       </div>
@@ -306,14 +307,14 @@ function Wishes() {
             {sent ? (
               <>
                 <p className="font-display text-2xl not-italic text-graphite">გმადლობთ! ♡</p>
-                <button onClick={() => setOpen(false)} className="mt-6 text-sm text-graphite underline">დახურვა</button>
+                <button onClick={() => setOpen(false)} className={`mx-auto mt-6 ${plaque}`} style={plaqueStyle}>დახურვა</button>
               </>
             ) : (
               <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
                 <p className="font-display text-2xl not-italic text-graphite">თქვენი სურვილი</p>
                 <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
                 <textarea required maxLength={1000} rows={4} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
-                <button className="mx-auto flex h-11 w-44 items-center justify-center bg-contain bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>გაგზავნა</button>
+                <button className={`mx-auto ${plaque}`} style={plaqueStyle}>გაგზავნა</button>
               </form>
             )}
           </div>
