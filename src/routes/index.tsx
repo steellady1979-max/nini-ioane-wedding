@@ -223,7 +223,10 @@ function Landing() {
           <p className="mt-[4%] font-display text-xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
           <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
           <div className="mt-auto flex w-full justify-center">
-            <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[84%] sm:w-[90%]" />
+            <div className="relative w-[84%] sm:w-[90%]">
+              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-full" />
+              <RedThread />
+            </div>
           </div>
         </div>
       </section>
