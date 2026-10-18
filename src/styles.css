@@ -190,10 +190,6 @@ body { font-family: var(--font-body); font-style: italic; }
   radial-gradient(circle at 10px 10px, transparent 6.5px, var(--graphite) 7px 8.2px, transparent 8.7px),
   radial-gradient(circle at 20px 10px, transparent 6.5px, var(--graphite) 7px 8.2px, transparent 8.7px);
   filter: drop-shadow(0 0 0 var(--ivory)) drop-shadow(0 0 3px var(--ivory)); }
-/* Hero → countdown divider */
-.divider { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--ecru); }
-.divider::before, .divider::after { content: ""; height: 1px; width: 70px; background: linear-gradient(90deg, transparent, currentColor); }
-.divider::after { transform: scaleX(-1); }
 .bg-rsvp { background-color: #E8E3DA; }
 
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s ease; }
