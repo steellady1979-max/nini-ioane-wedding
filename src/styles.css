@@ -196,3 +196,13 @@ html { -webkit-tap-highlight-color: transparent; }
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s ease; }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* Red thread of fate — drawn once over the kids sticker, then gently breathes */
+.thread-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: thread-draw 2.6s ease-in-out 0.6s forwards; }
+@keyframes thread-draw { to { stroke-dashoffset: 0; } }
+.thread-heart { opacity: 0; transform-origin: center; transform-box: fill-box; animation: thread-heart-in 0.8s ease-out 3s forwards, thread-heart-beat 4.5s ease-in-out 3.8s infinite; }
+@keyframes thread-heart-in { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+@keyframes thread-heart-beat { 0%, 100% { transform: scale(1); } 6% { transform: scale(1.12); } 12% { transform: scale(1); } }
+.thread-spark { opacity: 0; animation: thread-spark 5s ease-in-out infinite; }
+@keyframes thread-spark { 0%, 100% { opacity: 0; } 50% { opacity: 0.9; } }
+@media (prefers-reduced-motion: reduce) { .thread-draw { animation: none; stroke-dashoffset: 0; } .thread-heart { animation: none; opacity: 1; } .thread-spark { display: none; } }

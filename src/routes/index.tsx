@@ -157,6 +157,38 @@ function Intro({ onOpen }: { onOpen: () => void }) {
   );
 }
 
+// Red thread of fate — an infinity loop with a small heart, drawn over the kids sticker.
+function RedThread() {
+  const thread = "#9E2B25";
+  return (
+    <svg viewBox="0 0 300 200" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
+      {/* infinity loop across the children's chest line */}
+      <path
+        pathLength={1}
+        className="thread-draw"
+        d="M 22 158 C 45 132, 105 132, 150 158 C 195 184, 255 184, 278 158 C 255 132, 195 132, 150 158 C 105 184, 45 184, 22 158 Z"
+        fill="none"
+        stroke={thread}
+        strokeWidth={2.2}
+        strokeLinecap="round"
+        opacity={0.9}
+      />
+      {/* small tender heart at the crossover */}
+      <path
+        className="thread-heart"
+        d="M 150 164 c -3 -5 -10 -4 -10 1 c 0 4 6 7 10 10 c 4 -3 10 -6 10 -10 c 0 -5 -7 -6 -10 -1 Z"
+        fill={thread}
+      />
+      {/* faint gold sparks along the thread */}
+      <g fill="#C9A24B">
+        <circle className="thread-spark" cx="86" cy="142" r="1.6" style={{ animationDelay: "3.4s" }} />
+        <circle className="thread-spark" cx="214" cy="142" r="1.4" style={{ animationDelay: "4.6s" }} />
+        <circle className="thread-spark" cx="150" cy="138" r="1.2" style={{ animationDelay: "5.8s" }} />
+      </g>
+    </svg>
+  );
+}
+
 function useCountdown() {
   const [now, setNow] = useState<number | null>(null);
   useEffect(() => {
@@ -223,7 +255,10 @@ function Landing() {
           <p className="mt-[4%] font-display text-xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
           <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
           <div className="mt-auto flex w-full justify-center">
-            <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[84%] sm:w-[90%]" />
+            <div className="relative w-[84%] sm:w-[90%]">
+              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-full" />
+              <RedThread />
+            </div>
           </div>
         </div>
       </section>
