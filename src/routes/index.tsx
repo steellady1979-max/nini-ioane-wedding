@@ -46,8 +46,8 @@ function MusicButton() {
   };
   return (
     <button onClick={toggle} aria-label={on ? "მუსიკის გამორთვა" : "მუსიკის ჩართვა"}
-      className={`fixed bottom-4 right-4 z-40 h-16 w-16 rounded-full drop-shadow-lg transition hover:scale-105 ${on ? "opacity-100" : "opacity-60"}`}>
-      <img src={vinyl.url} alt="" className="h-full w-full animate-spin" style={{ animationDuration: "6s", animationPlayState: on ? "running" : "paused" }} />
+      className={`fixed bottom-3 right-3 z-40 h-10 w-10 rounded-full transition hover:opacity-90 ${on ? "opacity-60" : "opacity-35"}`}>
+      <img src={vinyl.url} alt="" className="h-full w-full animate-spin" style={{ animationDuration: "8s" }} />
     </button>
   );
 }
