@@ -7,7 +7,7 @@ import floralBg from "@/assets/floral-bg.png.asset.json";
 import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
 import garden from "@/assets/ceremony-garden.jpg.asset.json";
-import rsvpFrame from "@/assets/rsvp-frame.png.asset.json";
+import rsvpFrame from "@/assets/lace-flower-frame.png.asset.json";
 import wax from "@/assets/wax-seal.png.asset.json";
 import mapBtn from "@/assets/map-btn.png.asset.json";
 
@@ -182,7 +182,7 @@ function Landing() {
                 <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
                 <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
                 <p className="text-sm text-muted-foreground">{s.place}</p>
-                <div><MapLink href={s.map} /></div>
+                {i < 2 && <div><MapLink href={s.map} /></div>}
               </div>
             </li>
           ))}
@@ -224,7 +224,6 @@ function Locations() {
             <figcaption className="mt-4">
               <p className="font-display text-xl not-italic text-graphite">{l.name}</p>
               <p className="mt-1 text-sm text-muted-foreground">{l.note}</p>
-              <div><MapLink href={l.map} /></div>
             </figcaption>
           </figure>
         ))}
@@ -239,8 +238,8 @@ function Rsvp() {
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
-    <section className="mx-auto w-[112%] max-w-[760px] -translate-x-[5.4%] pt-4 sm:w-full sm:translate-x-0">
-      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[23%] pb-[30%] text-center mix-blend-multiply" style={{ paddingTop: "48%", backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(980px, 200vw)" }}>
+    <section className="mx-auto w-full max-w-[640px] px-2 pt-4">
+      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat flex aspect-[1086/1448] flex-col justify-center px-[22%] py-[20%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})` }}>
         <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
@@ -277,7 +276,7 @@ function Wishes() {
       </button>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-graphite/30 p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setOpen(false)}>
-          <div className="paper w-full max-w-sm rounded-3xl px-6 py-8 animate-in slide-in-from-bottom-8 duration-500" onClick={(e) => e.stopPropagation()}>
+          <div className="flex aspect-[1086/1448] w-full max-w-md flex-col justify-center bg-rsvp bg-[length:100%_100%] bg-center bg-no-repeat px-[20%] py-[18%] text-center shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-8 duration-500" style={{ backgroundImage: `url(${rsvpFrame.url})` }} onClick={(e) => e.stopPropagation()}>
             {sent ? (
               <>
                 <p className="font-display text-2xl not-italic text-graphite">გმადლობთ! ♡</p>
@@ -287,8 +286,8 @@ function Wishes() {
               <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
                 <p className="font-display text-2xl not-italic text-graphite">თქვენი სურვილი</p>
                 <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
-                <textarea required maxLength={1000} rows={5} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
-                <button className="w-full rounded-full bg-graphite py-3 font-display text-lg not-italic text-primary-foreground">ჩადება კონვერტში</button>
+                <textarea required maxLength={1000} rows={4} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
+                <button className="mx-auto flex h-11 w-44 items-center justify-center bg-contain bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>გაგზავნა</button>
               </form>
             )}
           </div>
