@@ -93,6 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/firago@1.0.0/css/firago.min.css" },
     ],
   }),
   shellComponent: RootShell,
