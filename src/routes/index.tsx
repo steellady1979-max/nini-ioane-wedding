@@ -59,7 +59,7 @@ function Intro({ onOpen }: { onOpen: () => void }) {
   };
   return (
     <div className="fixed inset-0 bg-ivory">
-      <video ref={ref} src={video.url} muted playsInline preload="auto" onEnded={onOpen} className="h-full w-full object-cover" />
+      <video ref={ref} src={video.url} muted playsInline preload="auto" onEnded={onOpen} onError={onOpen} className="h-full w-full object-cover" />
       {!playing && (
         <button onClick={start} className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh]">
           <span className="animate-pulse rounded-full border border-graphite/40 bg-background/70 px-8 py-3 font-display text-2xl text-graphite backdrop-blur-sm not-italic">
