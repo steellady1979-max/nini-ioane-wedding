@@ -7,6 +7,37 @@ import floralBg from "@/assets/floral-bg.png.asset.json";
 import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
 import garden from "@/assets/ceremony-garden.jpg.asset.json";
+import rsvpFrame from "@/assets/rsvp-frame.png.asset.json";
+
+const CAL_TITLE = "ნინი & იოანე — ქორწილი";
+const CAL_PLACE = "არმაზის ხეობა";
+const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CAL_TITLE)}&dates=20261108T090000Z/20261108T200000Z&location=${encodeURIComponent(CAL_PLACE)}&details=${encodeURIComponent("13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი")}`;
+
+function downloadIcs() {
+  const ics = [
+    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nini-ioane//wedding//KA", "BEGIN:VEVENT",
+    "UID:nini-ioane-20261108@wedding", "DTSTAMP:20261018T000000Z",
+    "DTSTART:20261108T090000Z", "DTEND:20261108T200000Z",
+    `SUMMARY:${CAL_TITLE}`, `LOCATION:${CAL_PLACE}`,
+    "DESCRIPTION:13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი",
+    "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:ხვალ ქორწილია ♡", "END:VALARM",
+    "END:VEVENT", "END:VCALENDAR",
+  ].join("\r\n");
+  const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url; a.download = "nini-ioane.ics"; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function CalendarButtons() {
+  const btn = "rounded-full border border-graphite/30 bg-background/70 px-5 py-2 text-sm text-graphite backdrop-blur-sm transition hover:bg-graphite hover:text-primary-foreground";
+  return (
+    <div className="mt-6 flex flex-wrap justify-center gap-3">
+      <a href={gcalUrl} target="_blank" rel="noreferrer" className={btn}>Google კალენდარი</a>
+      <button type="button" onClick={downloadIcs} className={btn}>Apple / Outlook</button>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -98,17 +129,17 @@ function Landing() {
   const cd = useCountdown();
   return (
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
-      {/* Hero — arch lace background */}
-      <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${archBg.url})` }}>
-        <div className="absolute inset-x-[14%] top-[13%] bottom-[5%] flex flex-col items-center text-center text-graphite">
-          <p className="font-display text-lg not-italic tracking-wide">გეპატიჟებით</p>
-          <h1 className="mt-[6%] font-display text-5xl leading-tight not-italic sm:text-7xl">
-            ნინი<span className="mx-2 align-middle text-3xl sm:text-4xl">&</span>იოანე
+      {/* Hero — arch lace background, lifted like a paper card */}
+      <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center hero-card" style={{ backgroundImage: `url(${archBg.url})` }}>
+        <div className="absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
+          <p className="font-display text-base not-italic tracking-wide sm:text-lg">გეპატიჟებით</p>
+          <h1 className="mt-[5%] font-display text-[2.6rem] leading-tight not-italic sm:text-7xl">
+            ნინი<span className="mx-2 align-middle text-2xl sm:text-4xl">&</span>იოანე
           </h1>
-          <p className="mt-[5%] font-display text-2xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
+          <p className="mt-[4%] font-display text-xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
           <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
           <div className="mt-auto flex w-full justify-center">
-            <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[92%]" />
+            <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[84%] sm:w-[90%]" />
           </div>
         </div>
       </section>
@@ -128,6 +159,7 @@ function Landing() {
             ))}
           </div>
         </div>
+        <CalendarButtons />
       </section>
 
       {/* Schedule — vertical timeline, no photo slots */}
@@ -190,8 +222,8 @@ function Rsvp() {
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
-    <section className="mx-auto max-w-[460px] px-4 pt-16">
-      <div className="paper rounded-3xl px-6 py-10 text-center">
+    <section className="mx-auto max-w-[520px] px-2 pt-16">
+      <div className="relative bg-contain bg-center bg-no-repeat px-[17%] pb-[22%] pt-[26%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(640px, 125vw)" }}>
         <h2 className="font-display text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
