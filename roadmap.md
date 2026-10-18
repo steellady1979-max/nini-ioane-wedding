@@ -1,5 +1,10 @@
 # Roadmap
 
+## Current request
+- [x] Verify the published Lovable badge is hidden.
+- [x] Replace template head branding and favicon; use the children's photo for link previews.
+- [ ] Publish the updated invitation — awaiting an explicit publishing request.
+
 ## Done
 - [x] Intro video + „გახსენი კონვერტი", landing on hero card
 - [x] Both lace photos as backgrounds (arch = hero, floral = lower sections)
