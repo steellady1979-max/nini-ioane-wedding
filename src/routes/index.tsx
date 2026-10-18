@@ -126,6 +126,12 @@ function Index() {
 function Intro({ onOpen }: { onOpen: () => void }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  // Warm up landing images while the envelope screen is showing, so the reveal is instant.
+  useEffect(() => {
+    [archBg, kids, floralBg, ornament, mapBtn, vinyl, rsvpFrame, church, garden, envelope, wax].forEach((a) => {
+      const img = new Image(); img.decoding = "async"; img.src = a.url;
+    });
+  }, []);
   const tap = () => {
     if (playing) return onOpen(); // any touch during the clip skips it
     setPlaying(true);
@@ -172,24 +178,37 @@ const line = "w-full border-0 border-b border-graphite/30 bg-transparent px-1 py
 function useReveal() {
   useEffect(() => {
     const els = Array.from(document.querySelectorAll<HTMLElement>(
-      "main h2, main section > div > *, main section > p, main section > button, main li, main figure, main footer > *"
+      "main section h2, main section > div > *, main section > p, main li, main figure, main footer"
     ));
     els.forEach((el) => el.classList.add("reveal"));
     const io = new IntersectionObserver((entries) => {
       entries.filter((e) => e.isIntersecting).forEach((e, i) => {
         const el = e.target as HTMLElement;
-        el.style.transitionDelay = `${i * 160}ms`;
+        el.style.transitionDelay = `${Math.min(i, 3) * 120}ms`;
         el.classList.add("in");
         io.unobserve(el);
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
 }
 
-function Landing() {
+function Countdown() {
   const cd = useCountdown();
+  return (
+    <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
+      {cd.map(([v, l], i) => (
+        <div key={l} className={i ? "border-l border-graphite/20" : ""}>
+          <div className="font-display text-3xl not-italic text-graphite tabular-nums sm:text-4xl">{String(v).padStart(2, "0")}</div>
+          <div className="text-[10px] tracking-widest text-muted-foreground">{l}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Landing() {
   useReveal();
   return (
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
@@ -214,15 +233,8 @@ function Landing() {
       <section className="px-4 pt-14 text-center">
         <h2 className="font-display text-3xl not-italic text-graphite">ჩვენს დღემდე დარჩა</h2>
         <div className="relative mx-auto mt-6 aspect-[2134/728] max-w-[520px]">
-          <img src={ornament.url} alt="" className="absolute inset-0 h-full w-full mix-blend-multiply" />
-          <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
-            {cd.map(([v, l], i) => (
-              <div key={l} className={i ? "border-l border-graphite/20" : ""}>
-                <div className="font-display text-3xl not-italic text-graphite tabular-nums sm:text-4xl">{String(v).padStart(2, "0")}</div>
-                <div className="text-[10px] tracking-widest text-muted-foreground">{l}</div>
-              </div>
-            ))}
-          </div>
+          <img src={ornament.url} alt="" decoding="async" className="absolute inset-0 h-full w-full mix-blend-multiply" />
+          <Countdown />
         </div>
         <CalendarButtons />
       </section>
