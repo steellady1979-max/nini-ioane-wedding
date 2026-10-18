@@ -166,7 +166,7 @@ function RedThread() {
       <path
         pathLength={1}
         className="thread-draw"
-        d="M 40 118 C 60 96, 110 96, 150 118 C 190 140, 240 140, 260 118 C 240 96, 190 96, 150 118 C 110 140, 60 140, 40 118 Z"
+        d="M 22 158 C 45 132, 105 132, 150 158 C 195 184, 255 184, 278 158 C 255 132, 195 132, 150 158 C 105 184, 45 184, 22 158 Z"
         fill="none"
         stroke={thread}
         strokeWidth={2.2}
@@ -176,14 +176,14 @@ function RedThread() {
       {/* small tender heart at the crossover */}
       <path
         className="thread-heart"
-        d="M 150 124 c -3 -5 -10 -4 -10 1 c 0 4 6 7 10 10 c 4 -3 10 -6 10 -10 c 0 -5 -7 -6 -10 -1 Z"
+        d="M 150 164 c -3 -5 -10 -4 -10 1 c 0 4 6 7 10 10 c 4 -3 10 -6 10 -10 c 0 -5 -7 -6 -10 -1 Z"
         fill={thread}
       />
       {/* faint gold sparks along the thread */}
       <g fill="#C9A24B">
-        <circle className="thread-spark" cx="95" cy="104" r="1.6" style={{ animationDelay: "3.4s" }} />
-        <circle className="thread-spark" cx="205" cy="104" r="1.4" style={{ animationDelay: "4.6s" }} />
-        <circle className="thread-spark" cx="150" cy="100" r="1.2" style={{ animationDelay: "5.8s" }} />
+        <circle className="thread-spark" cx="86" cy="142" r="1.6" style={{ animationDelay: "3.4s" }} />
+        <circle className="thread-spark" cx="214" cy="142" r="1.4" style={{ animationDelay: "4.6s" }} />
+        <circle className="thread-spark" cx="150" cy="138" r="1.2" style={{ animationDelay: "5.8s" }} />
       </g>
     </svg>
   );
