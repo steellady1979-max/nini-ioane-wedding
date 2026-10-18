@@ -182,8 +182,13 @@ function Landing() {
       </section>
 
       <Locations />
+      </div>
 
-      <Rsvp />
+      <div className="bg-ivory py-8">
+        <Rsvp />
+      </div>
+
+      <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       <Wishes />
 
       <footer className="pt-16 text-center font-display text-2xl not-italic text-graphite">ნ & ი</footer>
@@ -222,8 +227,8 @@ function Rsvp() {
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
-    <section className="mx-auto max-w-[520px] px-2 pt-16">
-      <div className="relative bg-contain bg-center bg-no-repeat px-[17%] pb-[22%] pt-[26%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(640px, 125vw)" }}>
+    <section className="mx-auto w-full max-w-[680px] pt-8">
+      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[20%] pb-[26%] pt-[28%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(860px, 165vw)" }}>
         <h2 className="font-display text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
