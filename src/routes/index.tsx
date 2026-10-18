@@ -159,8 +159,30 @@ function useCountdown() {
   ] as const;
 }
 
+const line = "w-full border-0 border-b border-graphite/30 bg-transparent px-1 py-2 text-center text-graphite outline-none placeholder:text-muted-foreground focus:border-graphite";
+
+function useReveal() {
+  useEffect(() => {
+    const els = Array.from(document.querySelectorAll<HTMLElement>(
+      "main h2, main section > div > *, main section > p, main section > button, main li, main figure, main footer > *"
+    ));
+    els.forEach((el) => el.classList.add("reveal"));
+    const io = new IntersectionObserver((entries) => {
+      entries.filter((e) => e.isIntersecting).forEach((e, i) => {
+        const el = e.target as HTMLElement;
+        el.style.transitionDelay = `${i * 160}ms`;
+        el.classList.add("in");
+        io.unobserve(el);
+      });
+    }, { threshold: 0.15 });
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
 function Landing() {
   const cd = useCountdown();
+  useReveal();
   return (
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
       <MusicButton />
@@ -248,10 +270,6 @@ function Locations() {
             ) : (
               <div className="photo-slot">ფოტო მალე</div>
             )}
-            <figcaption className="mt-4">
-              <p className="font-display text-xl not-italic text-graphite">{l.name}</p>
-              <p className="mt-1 text-sm text-muted-foreground">{l.note}</p>
-            </figcaption>
           </figure>
         ))}
       </div>
@@ -272,18 +290,18 @@ function Rsvp() {
         {sent ? (
           <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
         ) : (
-          <form className="mt-8 space-y-3" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
-            <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
-            <div className="flex flex-col items-center gap-2 pt-1">
+          <form className="mx-auto mt-8 w-full max-w-xs space-y-5" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
+            <input required maxLength={100} placeholder="სახელი, გვარი" className={line} />
+            <div className="flex flex-col gap-3 pt-1">
               {(["yes", "no"] as const).map((k) => (
                 <button type="button" key={k} onClick={() => setAns(k)}
-                  className={`${plaque} w-48 ${ans === k ? "scale-105 font-semibold drop-shadow-md" : ans ? "opacity-50" : ""}`} style={plaqueStyle}>
-                  {ans === k ? "✓ " : ""}{k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
+                  className={`w-full rounded-full border px-5 py-2.5 text-sm transition ${ans === k ? "border-graphite bg-graphite text-ivory" : "border-graphite/30 text-graphite hover:border-graphite/60"}`}>
+                  {k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
                 </button>
               ))}
             </div>
-            {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={field} />}
-            <div className="pt-2"><button disabled={!ans} className={`${plaque} font-display text-base not-italic`} style={plaqueStyle}>გაგზავნა</button></div>
+            {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={line} />}
+            <div className="pt-2"><button disabled={!ans} className="w-full rounded-full bg-graphite px-5 py-3 font-display text-base not-italic tracking-wide text-ivory transition hover:opacity-90 disabled:opacity-40">გაგზავნა</button></div>
           </form>
         )}
       </div>
