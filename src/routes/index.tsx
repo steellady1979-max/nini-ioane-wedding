@@ -203,8 +203,10 @@ function Landing() {
 
       <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       {/* Countdown in ornament frame */}
-      <section className="px-4 pt-16 text-center">
-        <h2 className="font-display text-3xl not-italic text-graphite">ჩვენს დღემდე დარჩა</h2>
+      <section className="px-4 pt-14 text-center">
+        <p className="divider font-display text-lg not-italic">❦</p>
+        <p className="mx-auto mt-4 max-w-xs font-display text-lg not-italic leading-relaxed text-graphite">სიყვარულით და მოუთმენელი მოლოდინით…</p>
+        <h2 className="mt-12 font-display text-3xl not-italic text-graphite">ჩვენს დღემდე დარჩა</h2>
         <div className="relative mx-auto mt-6 aspect-[2134/728] max-w-[520px]">
           <img src={ornament.url} alt="" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
