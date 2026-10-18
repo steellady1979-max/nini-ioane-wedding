@@ -12,6 +12,7 @@ import wax from "@/assets/wax-seal.png.asset.json";
 import mapBtn from "@/assets/map-btn.png.asset.json";
 import church from "@/assets/church.png.asset.json";
 import song from "@/assets/mukhambazi.mp3.asset.json";
+import vinyl from "@/assets/vinyl-record.png.asset.json";
 
 const plaque = "inline-flex h-11 w-44 items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5 disabled:opacity-40";
 const plaqueStyle = { backgroundImage: `url(${mapBtn.url})` };
@@ -45,9 +46,8 @@ function MusicButton() {
   };
   return (
     <button onClick={toggle} aria-label={on ? "მუსიკის გამორთვა" : "მუსიკის ჩართვა"}
-      className={`fixed bottom-4 right-4 z-40 inline-flex h-10 w-32 items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat text-xs text-graphite drop-shadow-md transition hover:-translate-y-0.5 ${on ? "opacity-100" : "opacity-70"}`}
-      style={{ backgroundImage: `url(${mapBtn.url})` }}>
-      მუსიკა
+      className={`fixed bottom-4 right-4 z-40 h-16 w-16 rounded-full drop-shadow-lg transition hover:scale-105 ${on ? "opacity-100" : "opacity-60"}`}>
+      <img src={vinyl.url} alt="" className="h-full w-full animate-spin" style={{ animationDuration: "6s", animationPlayState: on ? "running" : "paused" }} />
     </button>
   );
 }
