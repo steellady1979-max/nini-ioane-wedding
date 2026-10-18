@@ -142,3 +142,25 @@
     color: var(--color-foreground);
   }
 }
+
+@font-face { font-family: "Galaktioni"; src: url("/__l5e/assets-v1/413a59ac-1273-40b9-8851-937057fab01a/galaktioni.ttf") format("truetype"); font-display: swap; }
+@theme inline {
+  --font-display: "Galaktioni", serif;
+  --font-body: "FiraGO", sans-serif;
+  --color-ivory: var(--ivory);
+  --color-blush: var(--blush);
+  --color-cocoa: var(--cocoa);
+}
+:root {
+  --ivory: oklch(0.965 0.018 85);
+  --blush: oklch(0.9 0.04 15);
+  --cocoa: oklch(0.42 0.06 50);
+  --background: oklch(0.975 0.012 60);
+  --foreground: oklch(0.38 0.05 45);
+  --primary: oklch(0.42 0.06 50);
+  --primary-foreground: oklch(0.98 0.01 80);
+  --border: oklch(0.86 0.04 20);
+}
+body { font-family: var(--font-body); font-style: italic; }
+.sticker { filter: drop-shadow(0 0 0 var(--ivory)) drop-shadow(3px 0 0 white) drop-shadow(-3px 0 0 white) drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white) drop-shadow(0 12px 18px oklch(0.4 0.05 30 / 0.25)); }
+.lace-edge { height: 22px; background: radial-gradient(circle at 11px 0, transparent 7px, var(--blush) 8px, var(--blush) 9px, transparent 10px) repeat-x, radial-gradient(circle at 11px 0, var(--background) 0 6px, transparent 7px); background-size: 22px 22px; opacity: .9; }
