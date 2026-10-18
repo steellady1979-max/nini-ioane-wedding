@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/media/wedding-icon.png", type: "image/png" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/firago@1.0.0/css/firago.min.css" },
     ],
   }),
