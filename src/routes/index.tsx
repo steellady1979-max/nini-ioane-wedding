@@ -10,10 +10,38 @@ import garden from "@/assets/ceremony-garden.jpg.asset.json";
 import rsvpFrame from "@/assets/lace-flower-frame.png.asset.json";
 import wax from "@/assets/wax-seal.png.asset.json";
 import mapBtn from "@/assets/map-btn.png.asset.json";
+import church from "@/assets/church.png.asset.json";
+
+const plaque = "inline-flex h-11 w-44 items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5 disabled:opacity-40";
+const plaqueStyle = { backgroundImage: `url(${mapBtn.url})` };
 
 function MapLink({ href }: { href: string }) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" className="relative mt-3 inline-flex h-9 w-36 items-center justify-center bg-contain bg-center bg-no-repeat text-xs text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>რუკაზე ნახვა</a>
+    <a href={href} target="_blank" rel="noreferrer" className={`mt-3 ${plaque}`} style={plaqueStyle}>რუკაზე ნახვა</a>
+  );
+}
+
+// Set to an audio URL (mp3) once the couple picks a song; the wax button stays hidden until then.
+const MUSIC_URL: string | null = null;
+
+function MusicButton() {
+  const ref = useRef<HTMLAudioElement>(null);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    ref.current?.play().then(() => setOn(true)).catch(() => {});
+  }, []);
+  if (!MUSIC_URL) return null;
+  const toggle = () => {
+    const a = ref.current; if (!a) return;
+    if (a.paused) a.play().then(() => setOn(true)).catch(() => {}); else { a.pause(); setOn(false); }
+  };
+  return (
+    <>
+      <audio ref={ref} src={MUSIC_URL} loop preload="auto" />
+      <button onClick={toggle} aria-label={on ? "მუსიკის გამორთვა" : "მუსიკის ჩართვა"}
+        className={`fixed bottom-4 right-4 z-40 h-14 w-14 bg-contain bg-center bg-no-repeat drop-shadow-lg transition ${on ? "animate-[spin_8s_linear_infinite]" : "opacity-70"}`}
+        style={{ backgroundImage: `url(${wax.url})` }} />
+    </>
   );
 }
 
@@ -38,11 +66,10 @@ function downloadIcs() {
 }
 
 function CalendarButtons() {
-  const btn = "rounded-full border border-graphite/30 bg-background/70 px-5 py-2 text-sm text-graphite backdrop-blur-sm transition hover:bg-graphite hover:text-primary-foreground";
   return (
     <div className="mt-6 flex flex-wrap justify-center gap-3">
-      <a href={gcalUrl} target="_blank" rel="noreferrer" className={btn}>Google კალენდარი</a>
-      <button type="button" onClick={downloadIcs} className={btn}>Apple / Outlook</button>
+      <a href={gcalUrl} target="_blank" rel="noreferrer" className={plaque} style={plaqueStyle}>Google კალენდარი</a>
+      <button type="button" onClick={downloadIcs} className={plaque} style={plaqueStyle}>Apple / Outlook</button>
     </div>
   );
 }
@@ -74,7 +101,7 @@ const locations = [
     name: "ილორის წმ. გიორგის სახელობის ეკლესია",
     note: "ჯვრისწერა",
     map: "https://maps.app.goo.gl/NpFqZMV5gd69h2jp6?g_st=ic",
-    photo: null as string | null,
+    photo: church.url as string | null,
   },
   {
     name: "არმაზის ხეობა",
@@ -92,26 +119,25 @@ function Index() {
 function Intro({ onOpen }: { onOpen: () => void }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-  const start = () => {
+  const tap = () => {
+    if (playing) return onOpen(); // any touch during the clip skips it
     setPlaying(true);
     const v = ref.current;
     if (!v) return onOpen();
+    v.playbackRate = 1.8;
     v.play().catch(onOpen);
     // If the clip can't decode or autoplay is blocked, never trap the guest here.
     setTimeout(() => { if (v.readyState < 2 || v.currentTime === 0) onOpen(); }, 1500);
   };
   return (
-    <div className="fixed inset-0 bg-ivory">
-      <video ref={ref} src={video.url} muted playsInline preload="auto" onEnded={onOpen} onError={onOpen} className="h-full w-full object-cover" />
+    <div className="fixed inset-0 cursor-pointer bg-ivory" onClick={tap}>
+      <video ref={ref} src={video.url} muted playsInline preload="auto" onEnded={onOpen} onError={onOpen} className="pointer-events-none h-full w-full object-cover" />
       {!playing && (
-        <button onClick={start} className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh]">
-          <span className="animate-pulse rounded-full border border-graphite/40 bg-background/70 px-8 py-3 font-display text-2xl text-graphite backdrop-blur-sm not-italic">
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh]">
+          <span className={`animate-pulse font-display text-xl not-italic ${plaque} h-14 w-60`} style={plaqueStyle}>
             გახსენი კონვერტი
           </span>
-        </button>
-      )}
-      {playing && (
-        <button onClick={onOpen} className="absolute bottom-6 right-6 text-sm text-graphite/70">გამოტოვება →</button>
+        </div>
       )}
     </div>
   );
