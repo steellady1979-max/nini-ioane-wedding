@@ -131,6 +131,7 @@ function Landing() {
       <Wishes />
 
       <footer className="pt-16 text-center font-display text-2xl not-italic text-cocoa">ნ & ი</footer>
+      </div>
     </main>
   );
 }

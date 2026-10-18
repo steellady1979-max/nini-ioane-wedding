@@ -150,11 +150,13 @@
   --color-ivory: var(--ivory);
   --color-blush: var(--blush);
   --color-cocoa: var(--cocoa);
+  --color-ecru: var(--ecru);
 }
 :root {
   --ivory: oklch(0.965 0.018 85);
   --blush: oklch(0.9 0.04 15);
   --cocoa: oklch(0.42 0.06 50);
+  --ecru: oklch(0.62 0.07 72);
   --background: oklch(0.975 0.012 60);
   --foreground: oklch(0.38 0.05 45);
   --primary: oklch(0.42 0.06 50);
