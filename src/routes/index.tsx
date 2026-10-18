@@ -160,18 +160,20 @@ function Intro({ onOpen }: { onOpen: () => void }) {
 // Red thread of fate — a hand-painted heart tied above the children's heads.
 function RedThread() {
   const thread = "#9E2B25";
-  const d = "M 40 138 C 76 132, 114 126, 150 122 C 112 98, 78 72, 90 46 C 102 20, 140 24, 150 54 C 160 24, 198 20, 210 46 C 222 72, 188 98, 150 122 C 186 126, 224 132, 260 138";
+  // One continuous ribbon: left tail → tip → right lobe → left lobe → crosses at the tip → right tail.
+  const d = "M 6 146 C 60 144, 118 140, 152 124 C 206 96, 238 52, 214 26 C 192 4, 160 16, 152 46 C 142 14, 106 6, 88 30 C 66 60, 98 100, 152 124 C 186 140, 240 146, 294 134";
   return (
-    <svg viewBox="0 0 300 160" aria-hidden className="pointer-events-none absolute inset-x-[6%] -top-[44%] h-[52%] w-[88%] overflow-visible">
+    <svg viewBox="0 0 300 160" aria-hidden className="pointer-events-none absolute -inset-x-[4%] -top-[70%] h-[78%] w-[108%] overflow-visible">
       <defs>
         <filter id="brush" x="-5%" y="-5%" width="110%" height="110%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" />
-          <feDisplacementMap in="SourceGraphic" scale="1.6" />
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" seed="7" />
+          <feDisplacementMap in="SourceGraphic" scale="2.2" />
         </filter>
       </defs>
       <g filter="url(#brush)" className="thread-heart" fill="none" strokeLinecap="round" strokeLinejoin="round">
-        <path pathLength={1} className="thread-draw" d={d} stroke={thread} strokeWidth={2.6} opacity={0.88} />
-        <path pathLength={1} className="thread-draw thread-draw-2" d={d} stroke={thread} strokeWidth={1} opacity={0.4} transform="translate(1.2 -1)" />
+        <path pathLength={1} className="thread-draw" d={d} stroke={thread} strokeWidth={3.4} opacity={0.82} />
+        <path pathLength={1} className="thread-draw" d={d} stroke={thread} strokeWidth={1.6} opacity={0.5} transform="translate(1.6 1.2)" />
+        <path pathLength={1} className="thread-draw thread-draw-2" d={d} stroke={thread} strokeWidth={0.8} opacity={0.35} transform="translate(-1.4 -1.6)" />
       </g>
       <g fill="#C9A24B">
         <circle className="thread-spark" cx="92" cy="40" r="1.6" style={{ animationDelay: "3.4s" }} />
