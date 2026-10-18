@@ -286,7 +286,7 @@ function Wishes() {
               <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
                 <p className="font-display text-2xl not-italic text-graphite">თქვენი სურვილი</p>
                 <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
-                <textarea required maxLength={1000} rows={5} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
+                <textarea required maxLength={1000} rows={4} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
                 <button className="mx-auto flex h-11 w-44 items-center justify-center bg-contain bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>გაგზავნა</button>
               </form>
             )}
