@@ -192,7 +192,7 @@ function Landing() {
       <Locations />
       </div>
 
-      <div className="bg-rsvp overflow-hidden py-8">
+      <div className="bg-rsvp overflow-hidden">
         <Rsvp />
       </div>
 
@@ -238,8 +238,8 @@ function Rsvp() {
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
-    <section className="mx-auto w-full max-w-[640px] px-2 pt-4">
-      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat flex aspect-[1086/1448] flex-col justify-center px-[22%] py-[20%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})` }}>
+    <section className="mx-auto w-full max-w-[760px]">
+      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat flex aspect-[1086/1448] flex-col justify-center px-[22%] py-[20%] text-center" style={{ backgroundImage: `url(${rsvpFrame.url})` }}>
         <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
