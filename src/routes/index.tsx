@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import video from "@/assets/envelope.mp4.asset.json";
-import frame from "@/assets/lace-frame.png.asset.json";
 import kids from "@/assets/kids-sticker.png.asset.json";
+import ornament from "@/assets/ornament-frame.png.asset.json";
+import envelope from "@/assets/wish-envelope.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,53 +75,130 @@ function useCountdown() {
 function Landing() {
   const cd = useCountdown();
   return (
-    <main className="min-h-screen animate-in fade-in duration-1000 bg-background text-foreground">
-      <section className="relative mx-auto aspect-[2/3] max-h-screen w-full max-w-[640px]">
-        <img src={frame.url} alt="" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 flex flex-col items-center justify-between px-[16%] py-[14%] text-center text-cocoa">
-          <p className="font-display text-xl not-italic tracking-wide">გეპატიჟებით</p>
-          <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker w-[88%] -rotate-2" />
-          <div>
-            <h1 className="font-display text-4xl not-italic sm:text-5xl">ნინი & იოანე</h1>
-            <p className="mt-3 font-display text-lg not-italic">8 ნოემბერი · 18:00</p>
+    <main className="min-h-screen animate-in fade-in duration-1000 bg-blush/30 pb-16 text-foreground">
+      {/* Printed-card style invitation */}
+      <section className="px-4 pt-10">
+        <div className="lace-card relative mx-auto max-w-[460px]">
+          <div className="paper relative overflow-hidden px-8 pt-14 text-center text-cocoa">
+            <p className="font-display text-lg not-italic tracking-wide">გეპატიჟებით</p>
+            <h1 className="mt-6 font-display text-6xl leading-tight not-italic sm:text-7xl">
+              ნინი<span className="mx-2 text-4xl align-middle">&</span>იოანე
+            </h1>
+            <p className="mx-auto mt-6 max-w-[30ch] text-sm leading-relaxed text-foreground/80">
+              სიხარულით გაცნობებთ, რომ ვქორწინდებით და გვსურს ეს დღე თქვენთან ერთად გავატაროთ
+            </p>
+            <p className="mt-8 font-display text-3xl not-italic tracking-widest">8 | ნოემბერი | 2026</p>
+            <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
+            <p className="mt-4 text-xs uppercase tracking-[0.25em] text-foreground/70">არმაზის ხეობა</p>
+            <div className="relative -mx-8 mt-8 h-[300px]">
+              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker absolute -bottom-6 left-2 w-[78%] -rotate-3" />
+            </div>
           </div>
         </div>
       </section>
 
-      <div className="lace-edge" />
-
-      <section className="bg-blush/40 px-6 py-16 text-center">
+      {/* Countdown in ornament frame */}
+      <section className="px-4 pt-16 text-center">
         <h2 className="font-display text-3xl not-italic text-cocoa">დარჩა</h2>
-        <div className="mx-auto mt-8 grid max-w-md grid-cols-4 gap-3">
-          {cd.map(([v, l]) => (
-            <div key={l} className="rounded-t-full border border-border bg-background/80 px-2 pb-3 pt-6">
-              <div className="font-display text-3xl not-italic text-cocoa tabular-nums">{String(v).padStart(2, "0")}</div>
-              <div className="mt-1 text-xs text-muted-foreground">{l}</div>
+        <div className="relative mx-auto mt-6 aspect-[2134/728] max-w-[520px]">
+          <img src={ornament.url} alt="" className="absolute inset-0 h-full w-full mix-blend-multiply" />
+          <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
+            {cd.map(([v, l], i) => (
+              <div key={l} className={i ? "border-l border-cocoa/20" : ""}>
+                <div className="font-display text-3xl not-italic text-cocoa tabular-nums sm:text-4xl">{String(v).padStart(2, "0")}</div>
+                <div className="text-[10px] tracking-widest text-muted-foreground">{l}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Schedule */}
+      <section className="mx-auto max-w-[460px] px-4 pt-16">
+        <h2 className="text-center font-display text-3xl not-italic text-cocoa">დღის განრიგი</h2>
+        <div className="mt-8 space-y-4">
+          {schedule.map((s) => (
+            <div key={s.time} className="paper flex items-center gap-5 rounded-2xl px-5 py-5">
+              <div className="w-16 shrink-0 border-r border-cocoa/20 font-display text-2xl not-italic text-cocoa">{s.time}</div>
+              <div className="flex-1 text-left">
+                <p className="font-display text-xl not-italic text-cocoa">{s.title}</p>
+                <p className="text-sm text-muted-foreground">{s.place}</p>
+              </div>
+              <a href={s.map} target="_blank" rel="noreferrer" aria-label="რუკაზე ნახვა" className="rounded-full border border-cocoa/30 px-3 py-1.5 text-xs text-cocoa not-italic">რუკა</a>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="mx-auto max-w-xl px-6 py-20">
-        <h2 className="text-center font-display text-3xl not-italic text-cocoa">დღის განრიგი</h2>
-        <ol className="relative mt-12 space-y-14 border-l border-border pl-8">
-          {schedule.map((s) => (
-            <li key={s.time} className="relative">
-              <span className="absolute -left-[41px] top-1 h-4 w-4 rotate-45 border border-cocoa/50 bg-ivory" />
-              <p className="font-display text-2xl not-italic text-cocoa">{s.time} — {s.title}</p>
-              <p className="mt-1 text-muted-foreground">„{s.place}"</p>
-              {/* photo slot — will be filled later */}
-              <div className="mt-4 flex aspect-[4/3] items-center justify-center rounded-t-[999px] border border-dashed border-border bg-ivory text-sm text-muted-foreground">
-                ფოტო მალე
-              </div>
-              <a href={s.map} target="_blank" rel="noreferrer" className="mt-4 inline-block border-b border-cocoa/40 text-cocoa">რუკაზე ნახვა →</a>
-            </li>
-          ))}
-        </ol>
-      </section>
+      <Rsvp />
+      <Wishes />
 
-      <div className="lace-edge rotate-180" />
-      <footer className="bg-ivory py-12 text-center font-display text-2xl not-italic text-cocoa">ნ & ი</footer>
+      <footer className="pt-16 text-center font-display text-2xl not-italic text-cocoa">ნ & ი</footer>
     </main>
+  );
+}
+
+const field = "w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-cocoa outline-none placeholder:text-muted-foreground focus:border-cocoa/50";
+
+function Rsvp() {
+  const [sent, setSent] = useState(false);
+  const [ans, setAns] = useState<"yes" | "no" | null>(null);
+  return (
+    <section className="mx-auto max-w-[460px] px-4 pt-16">
+      <div className="paper rounded-3xl px-6 py-10 text-center">
+        <h2 className="font-display text-3xl not-italic text-cocoa">დაგვიდასტურეთ</h2>
+        <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
+        {sent ? (
+          <p className="mt-8 font-display text-xl not-italic text-cocoa">გმადლობთ! ♡</p>
+        ) : (
+          <form className="mt-8 space-y-3" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
+            <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
+            <div className="grid grid-cols-2 gap-3">
+              {(["yes", "no"] as const).map((k) => (
+                <button type="button" key={k} onClick={() => setAns(k)}
+                  className={`rounded-xl border px-3 py-3 text-sm not-italic ${ans === k ? "border-cocoa bg-cocoa text-primary-foreground" : "border-border text-cocoa"}`}>
+                  {k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
+                </button>
+              ))}
+            </div>
+            {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={field} />}
+            <button disabled={!ans} className="w-full rounded-full bg-cocoa py-3 font-display text-lg not-italic text-primary-foreground disabled:opacity-40">გაგზავნა</button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Wishes() {
+  const [open, setOpen] = useState(false);
+  const [sent, setSent] = useState(false);
+  return (
+    <section className="mx-auto max-w-[460px] px-4 pt-16 text-center">
+      <h2 className="font-display text-3xl not-italic text-cocoa">სურვილების კონვერტი</h2>
+      <p className="mt-2 text-sm text-muted-foreground">დააწკაპეთ კონვერტს და დაუტოვეთ წყვილს სურვილი</p>
+      <button onClick={() => setOpen(true)} className="mx-auto mt-6 block w-[70%] transition hover:-translate-y-1">
+        <img src={envelope.url} alt="სურვილების კონვერტი" className="w-full drop-shadow-xl" />
+      </button>
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-cocoa/30 p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setOpen(false)}>
+          <div className="paper w-full max-w-sm rounded-3xl px-6 py-8 animate-in slide-in-from-bottom-8 duration-500" onClick={(e) => e.stopPropagation()}>
+            {sent ? (
+              <>
+                <p className="font-display text-2xl not-italic text-cocoa">გმადლობთ! ♡</p>
+                <button onClick={() => setOpen(false)} className="mt-6 text-sm text-cocoa underline">დახურვა</button>
+              </>
+            ) : (
+              <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+                <p className="font-display text-2xl not-italic text-cocoa">თქვენი სურვილი</p>
+                <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
+                <textarea required maxLength={1000} rows={5} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
+                <button className="w-full rounded-full bg-cocoa py-3 font-display text-lg not-italic text-primary-foreground">ჩადება კონვერტში</button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </section>
   );
 }

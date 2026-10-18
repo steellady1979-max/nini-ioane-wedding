@@ -164,3 +164,11 @@
 body { font-family: var(--font-body); font-style: italic; }
 .sticker { filter: drop-shadow(0 0 0 var(--ivory)) drop-shadow(3px 0 0 white) drop-shadow(-3px 0 0 white) drop-shadow(0 3px 0 white) drop-shadow(0 -3px 0 white) drop-shadow(0 12px 18px oklch(0.4 0.05 30 / 0.25)); }
 .lace-edge { height: 22px; background: radial-gradient(circle at 11px 0, transparent 7px, var(--blush) 8px, var(--blush) 9px, transparent 10px) repeat-x, radial-gradient(circle at 11px 0, var(--background) 0 6px, transparent 7px); background-size: 22px 22px; opacity: .9; }
+.paper { background-color: var(--ivory); background-image: repeating-linear-gradient(0deg, oklch(0.4 0.03 60 / 0.025) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, oklch(0.4 0.03 60 / 0.025) 0 1px, transparent 1px 3px); box-shadow: 0 20px 40px -20px oklch(0.4 0.05 30 / 0.35); }
+.lace-card { padding: 14px; background:
+  radial-gradient(circle at 50% 50%, var(--ivory) 0 3px, transparent 4px) 0 0 / 14px 14px,
+  radial-gradient(circle at 50% 50%, transparent 4px, oklch(0.99 0.005 80) 5px 6px, transparent 7px) 7px 7px / 14px 14px,
+  var(--blush);
+  -webkit-mask: radial-gradient(circle 8px at 50% 0, transparent 7px, #000 8px) 0 0 / 18px 100% repeat-x;
+  border-radius: 6px; transform: rotate(-1deg); box-shadow: 0 30px 60px -30px oklch(0.4 0.05 30 / 0.5); }
+.lace-card > .paper { transform: rotate(1deg); }
