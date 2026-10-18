@@ -8,6 +8,14 @@ import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
 import garden from "@/assets/ceremony-garden.jpg.asset.json";
 import rsvpFrame from "@/assets/rsvp-frame.png.asset.json";
+import wax from "@/assets/wax-seal.png.asset.json";
+import mapBtn from "@/assets/map-btn.png.asset.json";
+
+function MapLink({ href }: { href: string }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="relative mt-3 inline-flex h-9 w-36 items-center justify-center bg-contain bg-center bg-no-repeat text-xs text-graphite transition hover:-translate-y-0.5" style={{ backgroundImage: `url(${mapBtn.url})` }}>რუკაზე ნახვა</a>
+  );
+}
 
 const CAL_TITLE = "ნინი & იოანე — ქორწილი";
 const CAL_PLACE = "არმაზის ხეობა";
@@ -174,7 +182,7 @@ function Landing() {
                 <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
                 <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
                 <p className="text-sm text-muted-foreground">{s.place}</p>
-                <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
+                <div><MapLink href={s.map} /></div>
               </div>
             </li>
           ))}
@@ -184,14 +192,19 @@ function Landing() {
       <Locations />
       </div>
 
-      <div className="bg-ivory py-8">
+      <div className="bg-rsvp py-8">
+<Rsvp />
         <Rsvp />
       </div>
 
       <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       <Wishes />
 
-      <footer className="pt-16 text-center font-display text-2xl not-italic text-graphite">ნ & ი</footer>
+      <footer className="flex flex-col items-center pt-16 text-center">
+        <img src={wax.url} alt="" className="w-20 drop-shadow-md" />
+        <p className="mt-3 font-display text-2xl not-italic text-graphite">ნ & ი</p>
+        <p className="mt-1 text-xs tracking-[0.3em] text-muted-foreground">08 · 11 · 2026</p>
+      </footer>
       </div>
     </main>
   );
@@ -212,7 +225,7 @@ function Locations() {
             <figcaption className="mt-4">
               <p className="font-display text-xl not-italic text-graphite">{l.name}</p>
               <p className="mt-1 text-sm text-muted-foreground">{l.note}</p>
-              <a href={l.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
+              <div><MapLink href={l.map} /></div>
             </figcaption>
           </figure>
         ))}
