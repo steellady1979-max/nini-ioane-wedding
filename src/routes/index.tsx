@@ -240,7 +240,7 @@ function Rsvp() {
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
     <section className="mx-auto w-[112%] max-w-[760px] -translate-x-[5.4%] pt-4 sm:w-full sm:translate-x-0">
-      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[23%] pb-[30%] pt-[46%] text-center mix-blend-multiply" style={{ backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(980px, 200vw)" }}>
+      <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat px-[23%] pb-[30%] text-center mix-blend-multiply" style={{ paddingTop: "48%", backgroundImage: `url(${rsvpFrame.url})`, minHeight: "min(980px, 200vw)" }}>
         <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
