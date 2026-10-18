@@ -160,9 +160,9 @@ function Intro({ onOpen }: { onOpen: () => void }) {
 // Red thread of fate — a hand-painted heart tied above the children's heads.
 function RedThread() {
   const thread = "#9E2B25";
-  const d = "M 28 152 C 70 142, 112 128, 150 122 C 112 98, 78 72, 90 46 C 102 20, 140 24, 150 54 C 160 24, 198 20, 210 46 C 222 72, 188 98, 150 122 C 188 128, 230 142, 272 152";
+  const d = "M 40 138 C 76 132, 114 126, 150 122 C 112 98, 78 72, 90 46 C 102 20, 140 24, 150 54 C 160 24, 198 20, 210 46 C 222 72, 188 98, 150 122 C 186 126, 224 132, 260 138";
   return (
-    <svg viewBox="0 0 300 160" aria-hidden className="pointer-events-none absolute inset-x-[6%] -top-[30%] h-[52%] w-[88%] overflow-visible">
+    <svg viewBox="0 0 300 160" aria-hidden className="pointer-events-none absolute inset-x-[6%] -top-[44%] h-[52%] w-[88%] overflow-visible">
       <defs>
         <filter id="brush" x="-5%" y="-5%" width="110%" height="110%">
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" />
