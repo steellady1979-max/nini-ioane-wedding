@@ -157,33 +157,26 @@ function Intro({ onOpen }: { onOpen: () => void }) {
   );
 }
 
-// Red thread of fate — an infinity loop with a small heart, drawn over the kids sticker.
+// Red thread of fate — a hand-painted heart tied above the children's heads.
 function RedThread() {
   const thread = "#9E2B25";
+  const d = "M 40 138 C 76 132, 114 126, 150 122 C 112 98, 78 72, 90 46 C 102 20, 140 24, 150 54 C 160 24, 198 20, 210 46 C 222 72, 188 98, 150 122 C 186 126, 224 132, 260 138";
   return (
-    <svg viewBox="0 0 300 200" aria-hidden className="pointer-events-none absolute inset-0 h-full w-full">
-      {/* infinity loop across the children's chest line */}
-      <path
-        pathLength={1}
-        className="thread-draw"
-        d="M 22 158 C 45 132, 105 132, 150 158 C 195 184, 255 184, 278 158 C 255 132, 195 132, 150 158 C 105 184, 45 184, 22 158 Z"
-        fill="none"
-        stroke={thread}
-        strokeWidth={2.2}
-        strokeLinecap="round"
-        opacity={0.9}
-      />
-      {/* small tender heart at the crossover */}
-      <path
-        className="thread-heart"
-        d="M 150 164 c -3 -5 -10 -4 -10 1 c 0 4 6 7 10 10 c 4 -3 10 -6 10 -10 c 0 -5 -7 -6 -10 -1 Z"
-        fill={thread}
-      />
-      {/* faint gold sparks along the thread */}
+    <svg viewBox="0 0 300 160" aria-hidden className="pointer-events-none absolute inset-x-[6%] -top-[44%] h-[52%] w-[88%] overflow-visible">
+      <defs>
+        <filter id="brush" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" />
+          <feDisplacementMap in="SourceGraphic" scale="1.6" />
+        </filter>
+      </defs>
+      <g filter="url(#brush)" className="thread-heart" fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <path pathLength={1} className="thread-draw" d={d} stroke={thread} strokeWidth={2.6} opacity={0.88} />
+        <path pathLength={1} className="thread-draw thread-draw-2" d={d} stroke={thread} strokeWidth={1} opacity={0.4} transform="translate(1.2 -1)" />
+      </g>
       <g fill="#C9A24B">
-        <circle className="thread-spark" cx="86" cy="142" r="1.6" style={{ animationDelay: "3.4s" }} />
-        <circle className="thread-spark" cx="214" cy="142" r="1.4" style={{ animationDelay: "4.6s" }} />
-        <circle className="thread-spark" cx="150" cy="138" r="1.2" style={{ animationDelay: "5.8s" }} />
+        <circle className="thread-spark" cx="92" cy="40" r="1.6" style={{ animationDelay: "3.4s" }} />
+        <circle className="thread-spark" cx="208" cy="40" r="1.4" style={{ animationDelay: "4.6s" }} />
+        <circle className="thread-spark" cx="150" cy="128" r="1.3" style={{ animationDelay: "5.8s" }} />
       </g>
     </svg>
   );
