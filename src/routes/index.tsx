@@ -176,9 +176,9 @@ function RedThread() {
         <path pathLength={1} className="thread-draw thread-draw-2" d={d} stroke={thread} strokeWidth={0.8} opacity={0.35} transform="translate(-1.4 -1.6)" />
       </g>
       <g fill="#C9A24B">
-        <circle className="thread-spark" cx="92" cy="40" r="1.6" style={{ animationDelay: "3.4s" }} />
-        <circle className="thread-spark" cx="208" cy="40" r="1.4" style={{ animationDelay: "4.6s" }} />
-        <circle className="thread-spark" cx="150" cy="128" r="1.3" style={{ animationDelay: "5.8s" }} />
+        <circle className="thread-spark" cx="92" cy="40" r="1.6" style={{ animationDelay: "5.4s" }} />
+        <circle className="thread-spark" cx="208" cy="40" r="1.4" style={{ animationDelay: "6.6s" }} />
+        <circle className="thread-spark" cx="150" cy="128" r="1.3" style={{ animationDelay: "7.8s" }} />
       </g>
     </svg>
   );
