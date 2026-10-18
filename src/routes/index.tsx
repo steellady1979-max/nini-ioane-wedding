@@ -46,13 +46,13 @@ function Intro({ onOpen }: { onOpen: () => void }) {
       <video ref={ref} src={video.url} muted playsInline preload="auto" onEnded={onOpen} className="h-full w-full object-cover" />
       {!playing && (
         <button onClick={start} className="absolute inset-0 flex flex-col items-center justify-end pb-[18vh]">
-          <span className="animate-pulse rounded-full border border-cocoa/40 bg-background/70 px-8 py-3 font-display text-2xl text-cocoa backdrop-blur-sm not-italic">
+          <span className="animate-pulse rounded-full border border-graphite/40 bg-background/70 px-8 py-3 font-display text-2xl text-graphite backdrop-blur-sm not-italic">
             გახსენი კონვერტი
           </span>
         </button>
       )}
       {playing && (
-        <button onClick={onOpen} className="absolute bottom-6 right-6 text-sm text-cocoa/70">გამოტოვება →</button>
+        <button onClick={onOpen} className="absolute bottom-6 right-6 text-sm text-graphite/70">გამოტოვება →</button>
       )}
     </div>
   );
@@ -80,7 +80,7 @@ function Landing() {
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
       {/* Hero — arch lace background */}
       <section className="relative mx-auto aspect-[2/3] w-full max-w-[640px] overflow-hidden bg-cover bg-center" style={{ backgroundImage: `url(${archBg.url})` }}>
-        <div className="absolute inset-x-[14%] top-[13%] bottom-[5%] flex flex-col items-center text-center text-cocoa">
+        <div className="absolute inset-x-[14%] top-[13%] bottom-[5%] flex flex-col items-center text-center text-graphite">
           <p className="font-display text-lg not-italic tracking-wide">გეპატიჟებით</p>
           <h1 className="mt-[6%] font-display text-5xl leading-tight not-italic sm:text-7xl">
             ნინი<span className="mx-2 align-middle text-3xl sm:text-4xl">&</span>იოანე
@@ -96,13 +96,13 @@ function Landing() {
       <div className="bg-repeat-y bg-[length:100%_auto] pb-16" style={{ backgroundImage: `url(${floralBg.url})` }}>
       {/* Countdown in ornament frame */}
       <section className="px-4 pt-16 text-center">
-        <h2 className="font-display text-3xl not-italic text-ecru">ჩვენს დღემდე დარჩა</h2>
+        <h2 className="font-display text-3xl not-italic text-graphite">ჩვენს დღემდე დარჩა</h2>
         <div className="relative mx-auto mt-6 aspect-[2134/728] max-w-[520px]">
           <img src={ornament.url} alt="" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <div className="absolute inset-0 grid grid-cols-4 items-center px-[12%]">
             {cd.map(([v, l], i) => (
-              <div key={l} className={i ? "border-l border-cocoa/20" : ""}>
-                <div className="font-display text-3xl not-italic text-cocoa tabular-nums sm:text-4xl">{String(v).padStart(2, "0")}</div>
+              <div key={l} className={i ? "border-l border-graphite/20" : ""}>
+                <div className="font-display text-3xl not-italic text-graphite tabular-nums sm:text-4xl">{String(v).padStart(2, "0")}</div>
                 <div className="text-[10px] tracking-widest text-muted-foreground">{l}</div>
               </div>
             ))}
@@ -112,7 +112,7 @@ function Landing() {
 
       {/* Schedule */}
       <section className="mx-auto max-w-3xl px-4 pt-16">
-        <h2 className="text-center font-display text-3xl not-italic text-ecru">დღის განრიგი</h2>
+        <h2 className="text-center font-display text-3xl not-italic text-graphite">დღის განრიგი</h2>
         <ol className="relative mt-12 space-y-16">
           <span aria-hidden className="absolute bottom-0 left-5 top-0 w-px bg-ecru/60 md:left-1/2" />
           {schedule.map((s, i) => (
@@ -121,10 +121,10 @@ function Landing() {
               <div className={`flex items-center gap-5 ${i % 2 ? "md:col-start-2" : "md:col-start-1 md:flex-row-reverse md:text-right"}`}>
                 <div className="arch-slot w-28 shrink-0 sm:w-32" aria-label="ფოტო მალე" />
                 <div>
-                  <p className="font-display text-4xl not-italic text-ecru">{s.time}</p>
-                  <p className="mt-1 font-display text-xl not-italic text-cocoa">{s.title}</p>
+                  <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
+                  <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
                   <p className="text-sm text-muted-foreground">{s.place}</p>
-                  <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-cocoa">რუკაზე ნახვა →</a>
+                  <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
                 </div>
               </div>
             </li>
@@ -135,13 +135,13 @@ function Landing() {
       <Rsvp />
       <Wishes />
 
-      <footer className="pt-16 text-center font-display text-2xl not-italic text-cocoa">ნ & ი</footer>
+      <footer className="pt-16 text-center font-display text-2xl not-italic text-graphite">ნ & ი</footer>
       </div>
     </main>
   );
 }
 
-const field = "w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-cocoa outline-none placeholder:text-muted-foreground focus:border-cocoa/50";
+const field = "w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-graphite outline-none placeholder:text-muted-foreground focus:border-graphite/50";
 
 function Rsvp() {
   const [sent, setSent] = useState(false);
@@ -149,23 +149,23 @@ function Rsvp() {
   return (
     <section className="mx-auto max-w-[460px] px-4 pt-16">
       <div className="paper rounded-3xl px-6 py-10 text-center">
-        <h2 className="font-display text-3xl not-italic text-ecru">გთხოვთ გვაცნობოთ</h2>
+        <h2 className="font-display text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
-          <p className="mt-8 font-display text-xl not-italic text-cocoa">გმადლობთ! ♡</p>
+          <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
         ) : (
           <form className="mt-8 space-y-3" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
             <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
             <div className="grid grid-cols-2 gap-3">
               {(["yes", "no"] as const).map((k) => (
                 <button type="button" key={k} onClick={() => setAns(k)}
-                  className={`rounded-xl border px-3 py-3 text-sm not-italic ${ans === k ? "border-cocoa bg-cocoa text-primary-foreground" : "border-border text-cocoa"}`}>
+                  className={`rounded-xl border px-3 py-3 text-sm not-italic ${ans === k ? "border-graphite bg-graphite text-primary-foreground" : "border-border text-graphite"}`}>
                   {k === "yes" ? "სიამოვნებით მოვალ" : "ვერ მოვახერხებ"}
                 </button>
               ))}
             </div>
             {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={field} />}
-            <button disabled={!ans} className="w-full rounded-full bg-cocoa py-3 font-display text-lg not-italic text-primary-foreground disabled:opacity-40">გაგზავნა</button>
+            <button disabled={!ans} className="w-full rounded-full bg-graphite py-3 font-display text-lg not-italic text-primary-foreground disabled:opacity-40">გაგზავნა</button>
           </form>
         )}
       </div>
@@ -178,25 +178,25 @@ function Wishes() {
   const [sent, setSent] = useState(false);
   return (
     <section className="mx-auto max-w-[460px] px-4 pt-16 text-center">
-      <h2 className="font-display text-3xl not-italic text-cocoa">სურვილების კონვერტი</h2>
+      <h2 className="font-display text-3xl not-italic text-graphite">სურვილების კონვერტი</h2>
       <p className="mt-2 text-sm text-muted-foreground">დააწკაპეთ კონვერტს და დაუტოვეთ წყვილს სურვილი</p>
       <button onClick={() => setOpen(true)} className="mx-auto mt-6 block w-[70%] transition hover:-translate-y-1">
         <img src={envelope.url} alt="სურვილების კონვერტი" className="w-full drop-shadow-xl" />
       </button>
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-cocoa/30 p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setOpen(false)}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-graphite/30 p-4 backdrop-blur-sm animate-in fade-in" onClick={() => setOpen(false)}>
           <div className="paper w-full max-w-sm rounded-3xl px-6 py-8 animate-in slide-in-from-bottom-8 duration-500" onClick={(e) => e.stopPropagation()}>
             {sent ? (
               <>
-                <p className="font-display text-2xl not-italic text-cocoa">გმადლობთ! ♡</p>
-                <button onClick={() => setOpen(false)} className="mt-6 text-sm text-cocoa underline">დახურვა</button>
+                <p className="font-display text-2xl not-italic text-graphite">გმადლობთ! ♡</p>
+                <button onClick={() => setOpen(false)} className="mt-6 text-sm text-graphite underline">დახურვა</button>
               </>
             ) : (
               <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
-                <p className="font-display text-2xl not-italic text-cocoa">თქვენი სურვილი</p>
+                <p className="font-display text-2xl not-italic text-graphite">თქვენი სურვილი</p>
                 <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
                 <textarea required maxLength={1000} rows={5} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
-                <button className="w-full rounded-full bg-cocoa py-3 font-display text-lg not-italic text-primary-foreground">ჩადება კონვერტში</button>
+                <button className="w-full rounded-full bg-graphite py-3 font-display text-lg not-italic text-primary-foreground">ჩადება კონვერტში</button>
               </form>
             )}
           </div>
