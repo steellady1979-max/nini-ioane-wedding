@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep wedding-specific share metadata on the index route and use locally served derivatives of the existing children's photo for share imagery and the favicon, so sharing has no template branding.
