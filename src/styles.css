@@ -185,3 +185,4 @@ body { font-family: var(--font-body); font-style: italic; }
   box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ecru) 30%, transparent);
   color: var(--ecru); font-size: 11px; letter-spacing: .22em; }
 .lace-dot { width: 18px; height: 18px; border-radius: 999px; background: radial-gradient(circle, var(--ecru) 0 3px, var(--ivory) 3.5px 5px, transparent 5.5px), repeating-conic-gradient(var(--ecru) 0 12deg, transparent 12deg 30deg); -webkit-mask: radial-gradient(circle, #000 8px, transparent 9px); mask: radial-gradient(circle, #000 8px, transparent 9px); }
+.bg-rsvp { background-color: #E8E3DA; }
