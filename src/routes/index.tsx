@@ -6,6 +6,7 @@ import archBg from "@/assets/arch-bg.png.asset.json";
 import floralBg from "@/assets/floral-bg.png.asset.json";
 import ornament from "@/assets/ornament-frame.png.asset.json";
 import envelope from "@/assets/wish-envelope.png.asset.json";
+import garden from "@/assets/ceremony-garden.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,6 +28,21 @@ const schedule = [
   { time: "13:00", title: "ჯვრისწერა", place: "ილორის წმ. გიორგის სახელობის ეკლესია", map: "https://maps.app.goo.gl/NpFqZMV5gd69h2jp6?g_st=ic" },
   { time: "17:00", title: "ხელის მოწერა", place: "არმაზის ხეობა", map: "https://maps.app.goo.gl/bYzGqqmibnKE9bJBA?g_st=ic" },
   { time: "18:00", title: "სადილი", place: "არმაზის ხეობა", map: "https://maps.app.goo.gl/bYzGqqmibnKE9bJBA?g_st=ic" },
+];
+
+const locations = [
+  {
+    name: "ილორის წმ. გიორგის სახელობის ეკლესია",
+    note: "ჯვრისწერა",
+    map: "https://maps.app.goo.gl/NpFqZMV5gd69h2jp6?g_st=ic",
+    photo: null as string | null,
+  },
+  {
+    name: "არმაზის ხეობა",
+    note: "ხელის მოწერა და სადილი",
+    map: "https://maps.app.goo.gl/bYzGqqmibnKE9bJBA?g_st=ic",
+    photo: garden.url as string | null,
+  },
 ];
 
 function Index() {
@@ -110,27 +126,26 @@ function Landing() {
         </div>
       </section>
 
-      {/* Schedule */}
+      {/* Schedule — vertical timeline, no photo slots */}
       <section className="mx-auto max-w-3xl px-4 pt-16">
         <h2 className="text-center font-display text-3xl not-italic text-graphite">დღის განრიგი</h2>
         <ol className="relative mt-12 space-y-16">
           <span aria-hidden className="absolute bottom-0 left-5 top-0 w-px bg-ecru/60 md:left-1/2" />
           {schedule.map((s, i) => (
             <li key={s.time} className="relative pl-14 md:grid md:grid-cols-2 md:gap-16 md:pl-0">
-              <span aria-hidden className="lace-dot absolute left-5 top-6 -translate-x-1/2 md:left-1/2" />
-              <div className={`flex items-center gap-5 ${i % 2 ? "md:col-start-2" : "md:col-start-1 md:flex-row-reverse md:text-right"}`}>
-                <div className="arch-slot w-28 shrink-0 sm:w-32" aria-label="ფოტო მალე" />
-                <div>
-                  <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
-                  <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
-                  <p className="text-sm text-muted-foreground">{s.place}</p>
-                  <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
-                </div>
+              <span aria-hidden className="lace-dot absolute left-5 top-1 -translate-x-1/2 md:left-1/2" />
+              <div className={i % 2 ? "md:col-start-2" : "md:col-start-1 md:text-right"}>
+                <p className="font-display text-4xl not-italic text-graphite">{s.time}</p>
+                <p className="mt-1 font-display text-xl not-italic text-graphite">{s.title}</p>
+                <p className="text-sm text-muted-foreground">{s.place}</p>
+                <a href={s.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
               </div>
             </li>
           ))}
         </ol>
       </section>
+
+      <Locations />
 
       <Rsvp />
       <Wishes />
@@ -138,6 +153,30 @@ function Landing() {
       <footer className="pt-16 text-center font-display text-2xl not-italic text-graphite">ნ & ი</footer>
       </div>
     </main>
+  );
+}
+
+function Locations() {
+  return (
+    <section className="mx-auto max-w-3xl px-4 pt-16">
+      <h2 className="text-center font-display text-3xl not-italic text-graphite">ლოკაციები</h2>
+      <div className="mt-10 grid gap-10 sm:grid-cols-2">
+        {locations.map((l) => (
+          <figure key={l.name} className="text-center">
+            {l.photo ? (
+              <img src={l.photo} alt={l.name} className="photo" />
+            ) : (
+              <div className="photo-slot">ფოტო მალე</div>
+            )}
+            <figcaption className="mt-4">
+              <p className="font-display text-xl not-italic text-graphite">{l.name}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{l.note}</p>
+              <a href={l.map} target="_blank" rel="noreferrer" className="mt-2 inline-block border-b border-ecru/50 text-xs text-graphite">რუკაზე ნახვა →</a>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
   );
 }
 
