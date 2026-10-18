@@ -11,6 +11,7 @@ import rsvpFrame from "@/assets/lace-flower-frame.png.asset.json";
 import wax from "@/assets/wax-seal.png.asset.json";
 import mapBtn from "@/assets/map-btn.png.asset.json";
 import church from "@/assets/church.png.asset.json";
+import song from "@/assets/mukhambazi.mp3.asset.json";
 
 const plaque = "inline-flex h-11 w-44 items-center justify-center bg-[length:100%_100%] bg-center bg-no-repeat text-sm text-graphite transition hover:-translate-y-0.5 disabled:opacity-40";
 const plaqueStyle = { backgroundImage: `url(${mapBtn.url})` };
@@ -21,27 +22,31 @@ function MapLink({ href }: { href: string }) {
   );
 }
 
-// Set to an audio URL (mp3) once the couple picks a song; the wax button stays hidden until then.
-const MUSIC_URL: string | null = null;
+// Shared audio, created on the envelope tap so browsers allow playback (user gesture).
+let audioEl: HTMLAudioElement | null = null;
+function startMusic() {
+  if (!audioEl) { audioEl = new Audio(song.url); audioEl.loop = true; audioEl.volume = 0.6; }
+  audioEl.play().catch(() => {});
+}
 
 function MusicButton() {
-  const ref = useRef<HTMLAudioElement>(null);
   const [on, setOn] = useState(false);
   useEffect(() => {
-    ref.current?.play().then(() => setOn(true)).catch(() => {});
+    const a = audioEl; if (!a) return;
+    const sync = () => setOn(!a.paused);
+    sync();
+    a.addEventListener("play", sync); a.addEventListener("pause", sync);
+    return () => { a.removeEventListener("play", sync); a.removeEventListener("pause", sync); };
   }, []);
-  if (!MUSIC_URL) return null;
   const toggle = () => {
-    const a = ref.current; if (!a) return;
-    if (a.paused) a.play().then(() => setOn(true)).catch(() => {}); else { a.pause(); setOn(false); }
+    if (!audioEl) return startMusic();
+    if (audioEl.paused) audioEl.play().catch(() => {}); else audioEl.pause();
+    setOn(!audioEl.paused);
   };
   return (
-    <>
-      <audio ref={ref} src={MUSIC_URL} loop preload="auto" />
-      <button onClick={toggle} aria-label={on ? "მუსიკის გამორთვა" : "მუსიკის ჩართვა"}
-        className={`fixed bottom-4 right-4 z-40 h-14 w-14 bg-contain bg-center bg-no-repeat drop-shadow-lg transition ${on ? "animate-[spin_8s_linear_infinite]" : "opacity-70"}`}
-        style={{ backgroundImage: `url(${wax.url})` }} />
-    </>
+    <button onClick={toggle} aria-label={on ? "მუსიკის გამორთვა" : "მუსიკის ჩართვა"}
+      className={`fixed bottom-4 right-4 z-40 h-14 w-14 bg-contain bg-center bg-no-repeat drop-shadow-lg transition ${on ? "animate-[spin_8s_linear_infinite]" : "opacity-70"}`}
+      style={{ backgroundImage: `url(${wax.url})` }} />
   );
 }
 
