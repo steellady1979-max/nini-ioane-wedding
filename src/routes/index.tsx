@@ -52,18 +52,8 @@ function MusicButton() {
   );
 }
 
-const CAL_TITLE = "იოანე & ნინი — ქორწილი";
-const CAL_PLACE = "არმაზის ხეობა";
 
 
-function CalendarButtons() {
-  return (
-    <div className="mt-6 flex flex-wrap justify-center gap-3">
-      <a href={gcalUrl} target="_blank" rel="noreferrer" className={plaque} style={plaqueStyle}>Google კალენდარი</a>
-      <button type="button" onClick={downloadIcs} className={plaque} style={plaqueStyle}>Apple / Outlook</button>
-    </div>
-  );
-}
 
 export const Route = createFileRoute("/")({
   head: () => ({
