@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import { submitResponse } from "@/lib/responses.functions";
 import video from "@/assets/envelope.mp4.asset.json";
 import kids from "@/assets/kids-sticker-2.png.asset.json";
 import archBg from "@/assets/arch-bg.png.asset.json";
@@ -327,6 +328,8 @@ function Locations() {
 const field = "w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-graphite outline-none placeholder:text-muted-foreground focus:border-graphite/50";
 
 function Rsvp() {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
   const [ans, setAns] = useState<"yes" | "no" | null>(null);
   return (
@@ -337,7 +340,17 @@ function Rsvp() {
         {sent ? (
           <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
         ) : (
-          <form className="mx-auto mt-8 w-full max-w-xs space-y-5" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
+          <form className="mx-auto mt-8 w-full max-w-xs space-y-5" onSubmit={async (e) => {
+            e.preventDefault();
+            if (!ans || busy) return;
+            const form = new FormData(e.currentTarget);
+            setBusy(true); setError("");
+            try {
+              await submitResponse({ data: { type: "rsvp", firstName: String(form.get("firstName") || ""), lastName: String(form.get("lastName") || ""), attending: ans } });
+              setSent(true);
+            } catch { setError("ვერ გაიგზავნა. გთხოვთ, სცადოთ ხელახლა."); }
+            finally { setBusy(false); }
+          }}>
             <input name="firstName" required maxLength={100} placeholder="სახელი" aria-label="სახელი" className={line} />
             <input name="lastName" required maxLength={100} placeholder="გვარი" aria-label="გვარი" className={line} />
             <div className="flex flex-col gap-3 pt-1">
@@ -348,7 +361,8 @@ function Rsvp() {
                 </button>
               ))}
             </div>
-            <div className="pt-2"><button disabled={!ans} className="w-full rounded-full bg-graphite px-5 py-3 font-display text-base not-italic tracking-wide text-ivory transition hover:opacity-90 disabled:opacity-40">გაგზავნა</button></div>
+            <p role="alert" className="text-sm text-red-800">{error}</p>
+            <div className="pt-2"><button disabled={!ans || busy} className="w-full rounded-full bg-graphite px-5 py-3 font-display text-base not-italic tracking-wide text-ivory transition hover:opacity-90 disabled:opacity-40">გაგზავნა</button></div>
           </form>
         )}
       </div>
@@ -357,6 +371,8 @@ function Rsvp() {
 }
 
 function Wishes() {
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   return (
@@ -375,11 +391,23 @@ function Wishes() {
                 <button onClick={() => setOpen(false)} className={`mx-auto mt-6 ${plaque}`} style={plaqueStyle}>დახურვა</button>
               </>
             ) : (
-              <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); setSent(true); }}>
+              <form className="space-y-3" onSubmit={async (e) => {
+                e.preventDefault();
+                if (busy) return;
+                const form = new FormData(e.currentTarget);
+                setBusy(true); setError("");
+                try {
+                  await submitResponse({ data: { type: "wish", firstName: String(form.get("firstName") || ""), lastName: String(form.get("lastName") || ""), message: String(form.get("message") || "") } });
+                  setSent(true);
+                } catch { setError("ვერ გაიგზავნა. გთხოვთ, სცადოთ ხელახლა."); }
+                finally { setBusy(false); }
+              }}>
                 <p className="font-display text-2xl not-italic text-graphite">თქვენი სურვილი</p>
-                <input required maxLength={100} placeholder="სახელი, გვარი" className={field} />
-                <textarea required maxLength={1000} rows={4} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
-                <button className={`mx-auto ${plaque}`} style={plaqueStyle}>გაგზავნა</button>
+                <input name="firstName" required maxLength={100} placeholder="სახელი" aria-label="სახელი" className={field} />
+                <input name="lastName" required maxLength={100} placeholder="გვარი" aria-label="გვარი" className={field} />
+                <textarea name="message" required maxLength={1000} rows={4} placeholder="თქვენი სურვილი წყვილისთვის" className={field} />
+                <p role="alert" className="text-sm text-red-800">{error}</p>
+                <button disabled={busy} className={`mx-auto ${plaque}`} style={plaqueStyle}>გაგზავნა</button>
               </form>
             )}
           </div>
