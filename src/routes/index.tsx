@@ -218,6 +218,12 @@ function Countdown() {
 
 function Landing() {
   useReveal();
+  const inkRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = inkRef.current; if (!el) return;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("write"); io.disconnect(); } }, { threshold: 0.6 });
+    io.observe(el); return () => io.disconnect();
+  }, []);
   return (
     <main className="min-h-screen animate-in fade-in duration-1000 bg-ivory text-foreground">
       <MusicButton />
@@ -250,12 +256,12 @@ function Landing() {
           <img src={ornament.url} alt="" decoding="async" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <Countdown />
         </div>
-        <figure className="ink-card relative mx-auto mt-10 w-[86%] max-w-[420px] drop-shadow-sm">
+        <figure ref={inkRef} className="ink-card relative mx-auto mt-10 w-[86%] max-w-[420px] drop-shadow-sm">
           <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" decoding="async" className="block w-full" />
           <span aria-hidden className="ink-cover" />
           {([[32, 37], [37.5, 42], [42.6, 47], [52, 56.5], [57, 61.5]] as const).map(([t, b], i) => (
             <img key={t} src="/media/invite-card.webp" alt="" aria-hidden className="ink-line"
-              style={{ ["--t" as string]: `${t}%`, ["--b" as string]: `${100 - b}%`, animationDelay: `${0.4 + i * 1.5}s` }} />
+              style={{ ["--t" as string]: `${t}%`, ["--b" as string]: `${100 - b}%`, animationDelay: `${0.6 + i * 2.2}s` }} />
           ))}
         </figure>
       </section>
