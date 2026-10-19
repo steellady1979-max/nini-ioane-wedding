@@ -328,6 +328,7 @@ function Locations() {
 const field = "w-full rounded-xl border border-border bg-background/80 px-4 py-3 text-graphite outline-none placeholder:text-muted-foreground focus:border-graphite/50";
 
 function Rsvp() {
+  const [confirmation, setConfirmation] = useState<{ name: string; attending: "yes" | "no" } | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [sent, setSent] = useState(false);
@@ -338,7 +339,11 @@ function Rsvp() {
         <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
         <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
-          <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
+          <p role="status" className="mt-8 break-words font-display text-xl not-italic text-graphite">
+            {confirmation?.attending === "yes"
+              ? `გმადლობთ, ${confirmation.name}! გელოდებით დიდი სიყვარულით ♡`
+              : "გმადლობთ პასუხისთვის ♡"}
+          </p>
         ) : (
           <form className="mx-auto mt-8 w-full max-w-xs space-y-5" onSubmit={async (e) => {
             e.preventDefault();
@@ -347,6 +352,7 @@ function Rsvp() {
             setBusy(true); setError("");
             try {
               await submitResponse({ data: { type: "rsvp", firstName: String(form.get("firstName") || ""), lastName: String(form.get("lastName") || ""), attending: ans } });
+              setConfirmation({ name: `${String(form.get("firstName") || "").trim()} ${String(form.get("lastName") || "").trim()}`, attending: ans });
               setSent(true);
             } catch { setError("ვერ გაიგზავნა. გთხოვთ, სცადოთ ხელახლა."); }
             finally { setBusy(false); }
@@ -387,7 +393,7 @@ function Wishes() {
           <div className="flex aspect-[1086/1448] w-full max-w-md flex-col justify-center bg-rsvp bg-[length:100%_100%] bg-center bg-no-repeat px-[20%] py-[18%] text-center shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-8 duration-500" style={{ backgroundImage: `url(${rsvpFrame.url})` }} onClick={(e) => e.stopPropagation()}>
             {sent ? (
               <>
-                <p className="font-display text-2xl not-italic text-graphite">გმადლობთ! ♡</p>
+                <p role="status" className="font-display text-2xl not-italic text-graphite">მადლობა თბილი სიტყვებისთვის ♡</p>
                 <button onClick={() => setOpen(false)} className={`mx-auto mt-6 ${plaque}`} style={plaqueStyle}>დახურვა</button>
               </>
             ) : (
