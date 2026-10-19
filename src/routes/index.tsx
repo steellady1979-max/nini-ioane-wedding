@@ -338,7 +338,8 @@ function Rsvp() {
           <p className="mt-8 font-display text-xl not-italic text-graphite">გმადლობთ! ♡</p>
         ) : (
           <form className="mx-auto mt-8 w-full max-w-xs space-y-5" onSubmit={(e) => { e.preventDefault(); if (ans) setSent(true); }}>
-            <input required maxLength={100} placeholder="სახელი, გვარი" className={line} />
+            <input name="firstName" required maxLength={100} placeholder="სახელი" aria-label="სახელი" className={line} />
+            <input name="lastName" required maxLength={100} placeholder="გვარი" aria-label="გვარი" className={line} />
             <div className="flex flex-col gap-3 pt-1">
               {(["yes", "no"] as const).map((k) => (
                 <button type="button" key={k} onClick={() => setAns(k)}
@@ -347,7 +348,6 @@ function Rsvp() {
                 </button>
               ))}
             </div>
-            {ans === "yes" && <input type="number" min={1} max={10} placeholder="სტუმრების რაოდენობა" className={line} />}
             <div className="pt-2"><button disabled={!ans} className="w-full rounded-full bg-graphite px-5 py-3 font-display text-base not-italic tracking-wide text-ivory transition hover:opacity-90 disabled:opacity-40">გაგზავნა</button></div>
           </form>
         )}
