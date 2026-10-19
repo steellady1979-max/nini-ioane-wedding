@@ -221,7 +221,7 @@ function Landing() {
   const inkRef = useRef<HTMLElement>(null);
   useEffect(() => {
     const el = inkRef.current; if (!el) return;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("write"); io.disconnect(); } }, { threshold: 0.6 });
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { el.classList.add("write"); io.disconnect(); } }, { threshold: 0.6 });
     io.observe(el); return () => io.disconnect();
   }, []);
   return (
