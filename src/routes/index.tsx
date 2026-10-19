@@ -250,7 +250,14 @@ function Landing() {
           <img src={ornament.url} alt="" decoding="async" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <Countdown />
         </div>
-        <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" loading="lazy" decoding="async" className="mx-auto block mt-10 w-[86%] max-w-[420px] drop-shadow-sm" />
+        <figure className="ink-card relative mx-auto mt-10 w-[86%] max-w-[420px] drop-shadow-sm">
+          <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" decoding="async" className="block w-full" />
+          <span aria-hidden className="ink-cover" />
+          {[[32, 37], [37.5, 42], [42.6, 47], [52, 56.5], [57, 61.5]].map(([t, b], i) => (
+            <img key={t} src="/media/invite-card.webp" alt="" aria-hidden className="ink-line"
+              style={{ ["--t" as string]: `${t}%`, ["--b" as string]: `${100 - b}%`, animationDelay: `${0.4 + i * 1.5}s` }} />
+          ))}
+        </figure>
       </section>
 
       {/* Schedule — vertical timeline, no photo slots */}
