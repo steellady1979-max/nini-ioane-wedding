@@ -250,7 +250,7 @@ function Landing() {
           <img src={ornament.url} alt="" decoding="async" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <Countdown />
         </div>
-        <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" loading="lazy" decoding="async" className="reveal mx-auto mt-10 w-[86%] max-w-[420px] drop-shadow-sm" />
+        <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" loading="lazy" decoding="async" className="mx-auto block mt-10 w-[86%] max-w-[420px] drop-shadow-sm" />
       </section>
 
       {/* Schedule — vertical timeline, no photo slots */}
