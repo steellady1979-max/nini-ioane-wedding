@@ -52,41 +52,15 @@ function MusicButton() {
   );
 }
 
-const CAL_TITLE = "ნინი & იოანე — ქორწილი";
-const CAL_PLACE = "არმაზის ხეობა";
-const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CAL_TITLE)}&dates=20261108T090000Z/20261108T200000Z&location=${encodeURIComponent(CAL_PLACE)}&details=${encodeURIComponent("13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი")}`;
 
-function downloadIcs() {
-  const ics = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nini-ioane//wedding//KA", "BEGIN:VEVENT",
-    "UID:nini-ioane-20261108@wedding", "DTSTAMP:20261018T000000Z",
-    "DTSTART:20261108T090000Z", "DTEND:20261108T200000Z",
-    `SUMMARY:${CAL_TITLE}`, `LOCATION:${CAL_PLACE}`,
-    "DESCRIPTION:13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი",
-    "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:ხვალ ქორწილია ♡", "END:VALARM",
-    "END:VEVENT", "END:VCALENDAR",
-  ].join("\r\n");
-  const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
-  const a = document.createElement("a");
-  a.href = url; a.download = "nini-ioane.ics"; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
 
-function CalendarButtons() {
-  return (
-    <div className="mt-6 flex flex-wrap justify-center gap-3">
-      <a href={gcalUrl} target="_blank" rel="noreferrer" className={plaque} style={plaqueStyle}>Google კალენდარი</a>
-      <button type="button" onClick={downloadIcs} className={plaque} style={plaqueStyle}>Apple / Outlook</button>
-    </div>
-  );
-}
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ნინი & იოანე — 8 ნოემბერი" },
-      { name: "description", content: "გეპატიჟებით ნინისა და იოანეს ქორწილში — 8 ნოემბერი, 18:00." },
-      { property: "og:title", content: "ნინი & იოანე — საქორწილო მოსაწვევი" },
+      { title: "იოანე & ნინი — 8 ნოემბერი" },
+      { name: "description", content: "გეპატიჟებით იოანესა და ნინის ქორწილში — 8 ნოემბერი, 18:00." },
+      { property: "og:title", content: "იოანე & ნინი — საქორწილო მოსაწვევი" },
       { property: "og:description", content: "გეპატიჟებით — 8 ნოემბერი, 18:00, არმაზის ხეობა." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -94,7 +68,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: "https://nini-ioane-lace-invitation.lovable.app/media/wedding-share.jpg" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
-      { property: "og:image:alt", content: "ნინი და იოანე ბავშვობაში" },
+      { property: "og:image:alt", content: "იოანე და ნინი ბავშვობაში" },
       { property: "og:url", content: "https://nini-ioane-lace-invitation.lovable.app/" },
     ],
     links: [{ rel: "canonical", href: "https://nini-ioane-lace-invitation.lovable.app/" }],
@@ -252,13 +226,13 @@ function Landing() {
         <div className="hero-in absolute inset-x-[15%] top-[14%] bottom-[5%] flex flex-col items-center text-center text-graphite">
           <p className="font-display text-base not-italic tracking-wide sm:text-lg">გეპატიჟებით</p>
           <h1 className="mt-[5%] font-display text-[2.6rem] leading-tight not-italic sm:text-7xl">
-            ნინი<span className="mx-2 align-middle text-2xl sm:text-4xl">&</span>იოანე
+            იოანე<span className="mx-2 align-middle text-2xl sm:text-4xl">&</span>ნინი
           </h1>
           <p className="mt-[4%] font-display text-xl not-italic tracking-widest sm:text-3xl">8 | ნოემბერი | 2026</p>
           <p className="mt-1 text-sm tracking-[0.3em]">18:00</p>
           <div className="mt-auto flex w-full justify-center">
             <div className="relative w-[84%] sm:w-[90%]">
-              <img src={kids.url} alt="ნინი და იოანე ბავშვობაში" className="sticker twinkle w-full" />
+              <img src={kids.url} alt="იოანე და ნინი ბავშვობაში" className="sticker twinkle w-full" />
               {[["12%","30%",0],["82%","22%",1.1],["50%","8%",2],["25%","70%",0.6],["75%","62%",1.6]].map(([l,t,dl]) => (
                 <span key={`${l}${t}`} className="sparkle" style={{ left: l as string, top: t as string, animationDelay: `${4 + (dl as number)}s` }} />
               ))}
@@ -276,7 +250,7 @@ function Landing() {
           <img src={ornament.url} alt="" decoding="async" className="absolute inset-0 h-full w-full mix-blend-multiply" />
           <Countdown />
         </div>
-        <CalendarButtons />
+        <img src="/media/invite-card.webp" alt="იოანე & ნინი — მოსაწვევი" loading="lazy" decoding="async" className="reveal mx-auto mt-10 w-[86%] max-w-[420px] drop-shadow-sm" />
       </section>
 
       {/* Schedule — vertical timeline, no photo slots */}
