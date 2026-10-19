@@ -297,7 +297,7 @@ function Landing() {
 
       <footer className="flex flex-col items-center pt-16 text-center">
         <img src={wax.url} alt="" className="w-20 drop-shadow-md" />
-        <p className="mt-3 font-display text-2xl not-italic text-graphite">ნ & ი</p>
+        <p className="mt-3 font-display text-2xl not-italic text-graphite">ი & ნ</p>
         <p className="mt-1 text-xs tracking-[0.3em] text-muted-foreground">08 · 11 · 2026</p>
       </footer>
       </div>
