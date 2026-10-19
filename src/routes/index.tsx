@@ -54,23 +54,7 @@ function MusicButton() {
 
 const CAL_TITLE = "იოანე & ნინი — ქორწილი";
 const CAL_PLACE = "არმაზის ხეობა";
-const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(CAL_TITLE)}&dates=20261108T090000Z/20261108T200000Z&location=${encodeURIComponent(CAL_PLACE)}&details=${encodeURIComponent("13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი")}`;
 
-function downloadIcs() {
-  const ics = [
-    "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//nini-ioane//wedding//KA", "BEGIN:VEVENT",
-    "UID:nini-ioane-20261108@wedding", "DTSTAMP:20261018T000000Z",
-    "DTSTART:20261108T090000Z", "DTEND:20261108T200000Z",
-    `SUMMARY:${CAL_TITLE}`, `LOCATION:${CAL_PLACE}`,
-    "DESCRIPTION:13:00 ჯვრისწერა · 17:00 ხელის მოწერა · 18:00 სადილი",
-    "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY", "DESCRIPTION:ხვალ ქორწილია ♡", "END:VALARM",
-    "END:VEVENT", "END:VCALENDAR",
-  ].join("\r\n");
-  const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
-  const a = document.createElement("a");
-  a.href = url; a.download = "nini-ioane.ics"; a.click();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
 
 function CalendarButtons() {
   return (
