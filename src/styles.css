@@ -231,6 +231,6 @@ html { -webkit-tap-highlight-color: transparent; }
 /* Invitation card: handwritten lines appear one by one, as if inked */
 .ink-cover { position: absolute; left: 19%; right: 19%; top: 31%; bottom: 37.5%; background: #F7F1EC; }
 .ink-line { position: absolute; inset: 0; width: 100%; height: 100%; clip-path: inset(var(--t) 81% var(--b) 19%); }
-.ink-card.in .ink-line { animation: ink-write 1.5s ease-in-out forwards; }
+.ink-card.write .ink-line { animation: ink-write 2.2s linear forwards; }
 @keyframes ink-write { to { clip-path: inset(var(--t) 19% var(--b) 19%); } }
 @media (prefers-reduced-motion: reduce) { .ink-cover { display: none; } .ink-line { display: none; } }
