@@ -80,7 +80,7 @@ export const Route = createFileRoute("/")({
 const WEDDING = new Date("2026-11-08T18:00:00+04:00").getTime();
 
 const schedule = [
-  { time: "13:00", title: "ჯვრისწერა", place: "ილორის წმ. გიორგის სახელობის ეკლესია", map: "https://maps.app.goo.gl/NpFqZMV5gd69h2jp6?g_st=ic" },
+  { time: "15:00", title: "ჯვრისწერა", place: "ილორის წმ. გიორგის სახელობის ეკლესია", map: "https://maps.app.goo.gl/NpFqZMV5gd69h2jp6?g_st=ic" },
   { time: "17:00", title: "ხელის მოწერა", place: "არმაზის ხეობა", map: "https://maps.app.goo.gl/bYzGqqmibnKE9bJBA?g_st=ic" },
   { time: "18:00", title: "სადილი", place: "არმაზის ხეობა", map: "https://maps.app.goo.gl/bYzGqqmibnKE9bJBA?g_st=ic" },
 ];
@@ -337,7 +337,6 @@ function Rsvp() {
     <section className="mx-auto w-full max-w-[760px]">
       <div className="relative bg-[length:100%_100%] bg-center bg-no-repeat flex aspect-[1086/1448] flex-col justify-center px-[22%] py-[20%] text-center" style={{ backgroundImage: `url(${rsvpFrame.url})` }}>
         <h2 className="font-display text-2xl sm:text-3xl not-italic text-graphite">გთხოვთ გვაცნობოთ</h2>
-        <p className="mt-2 text-sm text-muted-foreground">გთხოვთ, გვიპასუხოთ 25 ოქტომბრამდე</p>
         {sent ? (
           <p role="status" className="mt-8 break-words font-display text-xl not-italic text-graphite">
             {confirmation?.attending === "yes"
